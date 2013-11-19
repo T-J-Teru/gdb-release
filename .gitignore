@@ -1,0 +1,5 @@
+*.pyc
+*.swp
+
+# the directory where the "work" gets done (aka "tmp" directory).
+tmp

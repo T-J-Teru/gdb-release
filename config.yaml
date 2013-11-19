@@ -1,0 +1,55 @@
+# Assumes the following implicit "variables":
+#
+#   - root_dir: The path to this project's root directory.
+#   - HOME: The user's HOME environment variable.
+
+rel_manager:
+    # Normally, "rel_manager.name" and "rel_manager.email" are
+    # automatically computed from your global .gitconfig file.
+    # But you can override those defaults by uncommenting and
+    # adjusting the following two lines.
+    # name: David Smith
+    # email: david.smith@example.com
+    sourceware_uid: brobecke
+
+gdb_repo: &gdb_repo
+    name: binutils-gdb
+    url: ssh://${rel_manager.sourceware_uid}@${sourceware.hostname}/git/${gdb_repo.name}.git
+    public_url: git://${sourceware.hostname}/git/${gdb_repo.name}.git
+    head_branch: master
+    email: &gdb_repo_email
+        announce: gdb-announce@sourceware.org
+        patches: gdb-patches@sourceware.org
+
+sourceware: &sourceware
+    hostname: sourceware.org
+    gdbadmin_uid: gdbadmin
+    ftp:
+        root_dir: /sourceware/ftp/anonftp
+        branch_public_dir: pub/gdb/snapshots/branch
+        release_public_dir: pub/gdb/release
+    htdocs_dir: /www/sourceware/htdocs
+    docs_dir: ${sourceware.htdocs_dir}/gdb/download/onlinedocs
+    ari_dir:  ${sourceware.htdocs_dir}/gdb/download/ari
+
+setup:
+   var_dir: ${root_dir}/var
+   tmp_dir: ${root_dir}/tmp
+   checklists_dir: ${setup.var_dir}/checklists
+   release_data_file: ${setup.var_dir}/releases.yaml
+   # FIXME: A root_dir-relative path would be better.
+   htdocs_sandbox: ${HOME}/act/htdocs
+
+# FIXME: Temporary override while testing the scripts.
+gdb_repo:
+    << : *gdb_repo
+    url: /home/brobecke/tmp/gdb-release-testing/binutils-gdb.git
+    email:
+        << : *gdb_repo_email
+        announce: brobecke@joel.gnat.com
+        patches: brobecker@joel.gnat.com
+
+sourceware:
+    << : *sourceware
+    hostname: localhost
+    gdbadmin_uid: brobecke
