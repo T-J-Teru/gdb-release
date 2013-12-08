@@ -2,6 +2,8 @@ from gdbrel.action_items.releases import AbstractReleaseCreationAI
 from gdbrel.errors import FatalError
 from gdbrel.utils import trace, query, indent
 
+import sys
+
 NEW_TAG_QUERY = """\
 Creating the release tag...
 
@@ -82,4 +84,4 @@ class AI(AbstractReleaseCreationAI):
         query(VERIFY_TAG_QUERY % subst)
         trace('Pushing new tag (${hl_sbu}%(tag_name)s${hl_ebu})'
               ' to remote...' % subst)
-        self.git.push('origin', tag_name)
+        self.git.push('origin', tag_name, _outfile=sys.stdout)
