@@ -2,6 +2,7 @@ from gdbrel.errors import FatalError
 from gdbrel.utils import (info, info_skipped, query, trace, indent,
                           get_changelog_entries)
 
+from datetime import datetime
 import sys
 
 PATCH_REVIEW_BLURB = """\
@@ -91,7 +92,7 @@ class AbstractAI(object):
 %(cl_text)s
 
 """
-                    % {'iso_date': '2013-11-19',
+                    % {'iso_date': datetime.utcnow().date().isoformat(),
                        'name': self.cfg['rel_manager.name'],
                        'email': self.cfg['rel_manager.email'],
                        'cl_text': '\n'.join(cl_text)})
