@@ -40,16 +40,16 @@ setup:
    # FIXME: A root_dir-relative path would be better.
    htdocs_sandbox: ${HOME}/act/htdocs
 
-# FIXME: Temporary override while testing the scripts.
-gdb_repo:
-    << : *gdb_repo
-    url: /home/brobecke/tmp/gdb-release-testing/binutils-gdb.git
-    email:
-        << : *gdb_repo_email
-        announce: brobecke@joel.gnat.com
-        patches: brobecker@joel.gnat.com
-
-sourceware:
-    << : *sourceware
-    hostname: localhost
-    gdbadmin_uid: brobecke
+### FIXME: Temporary override while testing the scripts.
+# gdb_repo:
+#     << : *gdb_repo
+#     url: /home/brobecke/tmp/gdb-release-testing/binutils-gdb.git
+#     email:
+#         << : *gdb_repo_email
+#         announce: brobecke@joel.gnat.com
+#         patches: brobecker@joel.gnat.com
+#
+# sourceware:
+#     << : *sourceware
+#     hostname: localhost
+#     gdbadmin_uid: brobecke
