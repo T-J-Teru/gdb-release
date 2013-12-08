@@ -27,7 +27,7 @@ sourceware: &sourceware
     ftp:
         root_dir: /sourceware/ftp/anonftp
         branch_public_dir: pub/gdb/snapshots/branch
-        release_public_dir: pub/gdb/release
+        release_public_dir: pub/gdb/releases
     htdocs_dir: /www/sourceware/htdocs
     docs_dir: ${sourceware.htdocs_dir}/gdb/download/onlinedocs
     ari_dir:  ${sourceware.htdocs_dir}/gdb/download/ari
