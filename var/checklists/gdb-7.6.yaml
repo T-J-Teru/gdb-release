@@ -1,0 +1,20 @@
+- branch-creation:
+  - ALL DONE!
+- gdb-7.6.2-release:
+  - freeze branch
+  - set release version number
+  - update gdb/NEWS
+  - create release tag
+  - create tarballs
+  - sanity check
+  - add release in gdb/ChangeLog
+  - update schedule web page
+  - set new version number
+  - unfreeze branch
+  - upload tarballs to sourceware
+  - upload tarballs to gnu.org
+  - announce release on web
+  - update the online documentation
+  - update the ARI
+  - email release announcement
+  - ALL DONE!

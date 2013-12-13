@@ -1,0 +1,9 @@
+current-branch: gdb_7_6-branch
+
+gdb_7_6-branch:
+    # branchpoint date: Sun Nov 3 00:00:05 2013 +0000
+    branchpoint: 531a94fdb5a9a7b099bbe72d89d77b15faa0c53c
+    branch-version: !!str 7.6
+    # All previous 7.6.x releases have been done prior to the switch
+    # to git.
+    do_release: 7.6.2
