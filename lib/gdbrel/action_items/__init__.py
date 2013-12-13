@@ -157,8 +157,9 @@ class AbstractAI(object):
             'release/%s' % ('branch' if branch_name == self.release_branch
                             else 'HEAD'))
 
+        n_revs = len(self.git.rev_list(rev_list).splitlines())
         self.git.send_email(rev_list,
-                            annotate=True, compose=True,
+                            annotate=True, compose=(n_revs > 1),
                             subject=subject,
                             subject_prefix=subject_prefix,
                             to=self.cfg['gdb_repo.email.patches'],
