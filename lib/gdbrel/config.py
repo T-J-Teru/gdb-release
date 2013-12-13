@@ -2,7 +2,6 @@ from gdbrel.fyaml import FlatYaml
 from gdbrel.git import Git
 from gdbrel.utils import is_pre_release
 
-from datetime import datetime
 import os
 import yaml
 
@@ -69,12 +68,7 @@ class Config(object):
         release_version = self.release_version
         if release_version is None:
             return None
-        # FIXME: Eliminate the date from the tag.  Not only is the date
-        # useless, but the tag may change if we spread the relase work
-        # across a day change.
-        subst = {'ver': release_version.replace('.', '_'),
-                 'iso_date': datetime.utcnow().date().isoformat()}
-        return 'gdb_%(ver)s-%(iso_date)s-release' % subst
+        return 'gdb-%s-release' % release_version
 
     @property
     def release_tarball(self):
