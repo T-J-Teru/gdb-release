@@ -17,7 +17,7 @@ gdb.tar.bz2
 The sources are also accessible via GIT:
 
     git clone --single-branch --branch=%(release.branch_name)s\
- %(gdb_repo.url)s
+ %(gdb_repo.public_url)s
 
 This announcement has also been posted on the GDB web site at:
 
