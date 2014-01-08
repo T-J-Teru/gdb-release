@@ -1,0 +1,53 @@
+Terminology:
+============
+
+We use "head" to mean the tip of the branch used for daily development
+(in our case, the "master" branch).
+
+We use "branch" to mean the release branch being worked on.
+
+checklist:
+==========
+
+   * filename:
+     ~~~~~~~~~
+        var/checklists/gdb-<BRANCH_VERSION>.yaml
+        (Eg: var/checklists/gdb-7.7.yaml).
+
+        Should be automatically created by the release script
+        as soon as the current version gets bumped.
+
+   * format:
+     ~~~~~~~
+
+       - branch-creation:
+           - AI
+           - AI
+           (etc)
+       - gdb-<version>-release:
+           - AI
+           (etc)
+
+     The reason for using "nested series entry indicator" it to allow us
+     to preserve the order when dumping the yaml file after each AI gets
+     completed.  This makes it easier to track where we're at, what's
+     been done, and what still remains to be done.
+
+var/releases.yaml
+=================
+
+   * To create a new branch:
+     ~~~~~~~~~~~~~~~~~~~~~~~
+
+       1. Update the "current-branch:" value.
+       2. Create a section whose name is the new "current-branch:" value.
+          Follow the same pattern as previous branches.
+
+   * To create a new release (or pre-release):
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+     Just add a "do_release: <version-number>" entry at the end of
+     the corresponding release block in var/releases.yaml.
+
+     TIP: Do not delete old ones, as they are a great track record
+     of the releases created off that branch.
