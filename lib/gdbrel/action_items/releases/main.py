@@ -5,10 +5,10 @@ from gdbrel.action_items.update_head_branch\
     import AI as update_head_branch
 from gdbrel.action_items.releases.freeze_branch\
     import AI as freeze_branch
-from gdbrel.action_items.releases.update_version_in\
-    import AI as update_version_in
 from gdbrel.action_items.releases.update_news\
     import AI as update_news
+from gdbrel.action_items.releases.update_version_in\
+    import AI as update_version_in
 from gdbrel.action_items.publish_all_commits\
     import AI as publish_all_commits
 from gdbrel.action_items.releases.create_release_tag\
@@ -91,8 +91,8 @@ class AI(AbstractReleaseCreationAI):
         for AI in (freeze_branch,
                    update_release_branch,
                    update_head_branch,
-                   update_version_in,
                    update_news,
+                   update_version_in,
 
                    # We need to publish all commits now, in order to
                    # make sure that the tag we are about to create
