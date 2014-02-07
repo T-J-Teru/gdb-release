@@ -18,7 +18,7 @@ gdb_repo: &gdb_repo
     public_url: git://${sourceware.hostname}/git/${gdb_repo.name}.git
     head_branch: master
     email: &gdb_repo_email
-        announce: gdb-announce@sourceware.org
+        announce: gdb-announce@sourceware.org, info-gnu@gnu.org
         patches: gdb-patches@sourceware.org
 
 sourceware: &sourceware
