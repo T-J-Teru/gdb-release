@@ -14,3 +14,4 @@ gdb-7.7-branch:
     branch-version: !!str 7.7
     do_release: 7.6.90
     do_release: !!str 7.7
+    do_release: !!str 7.7.1
