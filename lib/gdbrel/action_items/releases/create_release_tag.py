@@ -73,7 +73,7 @@ class AI(AbstractReleaseCreationAI):
         trace('Creating new tag now (${hl_sbu}%(tag_name)s${hl_ebu})...'
               % subst)
         self.git.tag(tag_name, self.release_branch,
-                     annotate=True,
+                     sign=True,
                      message=TAG_REV_LOG % self.cfg)
 
         # Now that the tag has been created, let's be extra paranoid
