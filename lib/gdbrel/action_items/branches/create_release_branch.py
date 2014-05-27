@@ -26,7 +26,8 @@ class AI(AbstractBranchCreationAI):
 
     def do_AI(self):
         # Ask confirmation that we're branching on the right commit.
-        commit_info = self.git.show(pretty='format:' + COMMIT_INFO_FORMAT,
+        commit_info = self.git.show(self.cfg['release.branchpoint'],
+                                    pretty='format:' + COMMIT_INFO_FORMAT,
                                     quiet=True)
         query(BLURB % {'branch_name': self.release_branch,
                        'sha1': self.cfg['release.branchpoint'],
