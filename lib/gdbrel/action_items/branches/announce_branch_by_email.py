@@ -13,6 +13,8 @@ The prerelease snapshots will be available at:
 
     ftp://%(sourceware.hostname)s/%(sourceware.ftp.branch_public_dir)s/\
 gdb.tar.bz2
+    ftp://%(sourceware.hostname)s/%(sourceware.ftp.branch_public_dir)s/\
+gdb.tar.gz
 
 The sources are also accessible via GIT:
 
