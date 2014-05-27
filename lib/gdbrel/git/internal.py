@@ -1,7 +1,7 @@
 """Utility code for calling git commands.
 
 Derived in a very large part from the gnome git hooks, themselves
-apparently adapted form git-bz.
+apparently adapted from git-bz.
 
 Original copyright header:
 
