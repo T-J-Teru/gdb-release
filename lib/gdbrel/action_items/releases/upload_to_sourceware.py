@@ -27,7 +27,7 @@ NEW_FTP_README = """\
 See the GDB home page http://www.gnu.org/software/gdb/
 for more information about GDB.
 
-        gdb-%(release.do_release)s.tar.bz2                 %(bz2_size)sMiB
+        gdb-%(release.do_release)s.tar.xz                  %(xz_size)sMiB
         gdb-%(release.do_release)s.tar.gz                  %(gz_size)sMiB
 """
 
@@ -57,7 +57,7 @@ class AI(AbstractReleaseCreationAI):
         tmp_dir = self.cfg['setup.tmp_dir']
         tarballs_remote_url = self.__tarballs_remote_url()
         scp_cmd = ['scp',
-                   os.path.join(tmp_dir, self.cfg.release_bzip2_tarball),
+                   os.path.join(tmp_dir, self.cfg.release_xz_tarball),
                    os.path.join(tmp_dir, self.cfg.release_gzip_tarball),
                    os.path.join(tarballs_remote_url, '.')]
 
@@ -84,7 +84,7 @@ class AI(AbstractReleaseCreationAI):
 
         subst = dict(self.cfg.data)
         subst['today_utc'] = datetime.utcnow().strftime('%B %d, %Y')
-        for ext in ('bz2', 'gz'):
+        for ext in ('xz', 'gz'):
             tarball = os.path.join(tmp_dir,
                                    '%s.%s' % (self.cfg['release.tarball'],
                                               ext))

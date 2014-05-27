@@ -25,7 +25,7 @@ until the scripts are improved to execute them for you:
 
 ${hl_q}\
     %% $$HOME/ss/update-web-docs \\
-      %(sourceware.ftp.tarball_dir)s/%(release.bzip2_tarball)s \\
+      %(sourceware.ftp.tarball_dir)s/%(release.xz_tarball)s \\
       $$HOME/tmp/update-web-docs \\
       %(sourceware.docs_dir)s \\
       gdb

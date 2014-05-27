@@ -12,7 +12,7 @@ branch has just been created.
 The prerelease snapshots will be available at:
 
     ftp://%(sourceware.hostname)s/%(sourceware.ftp.branch_public_dir)s/\
-gdb.tar.bz2
+gdb.tar.xz
     ftp://%(sourceware.hostname)s/%(sourceware.ftp.branch_public_dir)s/\
 gdb.tar.gz
 

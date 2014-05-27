@@ -42,7 +42,7 @@ class Config(object):
         # Same for various other entities...
         self.data['release.tag'] = self.__release_tag
         self.data['release.tarball'] = self.release_tarball
-        self.data['release.bzip2_tarball'] = self.release_bzip2_tarball
+        self.data['release.xz_tarball'] = self.release_xz_tarball
         self.data['release.gzip_tarball'] = self.release_gzip_tarball
 
         self.data['sourceware.ftp.branch_dir'] = self.ftp_branch_dir
@@ -78,11 +78,11 @@ class Config(object):
         return 'gdb-%s.tar' % release_version
 
     @property
-    def release_bzip2_tarball(self):
+    def release_xz_tarball(self):
         release_tarball = self.release_tarball
         if release_tarball is None:
             return None
-        return release_tarball + '.bz2'
+        return release_tarball + '.xz'
 
     @property
     def release_gzip_tarball(self):

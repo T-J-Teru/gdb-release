@@ -10,7 +10,7 @@ until the scripts are improved to execute them for you:
 
 ${hl_q}\
     %% /bin/sh ~/ss/update-web-ari \\
-       %(sourceware.ftp.tarball_dir)s/%(release.bzip2_tarball)s \\
+       %(sourceware.ftp.tarball_dir)s/%(release.xz_tarball)s \\
        ~/tmp/www \\
        %(sourceware.ari_dir)s \\
        gdb

@@ -46,10 +46,10 @@ class AI(AbstractReleaseCreationAI):
     def __unpack_tarball(self):
         tmp_dir = self.cfg['setup.tmp_dir']
         tar_out = os.path.join(tmp_dir, 'untar.out')
-        bz2_tarball = self.cfg['release.bzip2_tarball']
-        trace('unpacking %(release.bzip2_tarball)s...' % self.cfg)
-        run('unpack %s' % bz2_tarball,
-            ['tar', 'xfj', bz2_tarball],
+        xz_tarball = self.cfg['release.xz_tarball']
+        trace('unpacking %(release.xz_tarball)s...' % self.cfg)
+        run('unpack %s' % xz_tarball,
+            ['tar', 'xfJ', xz_tarball],
             cwd=tmp_dir, stdout=tar_out)
 
     def __configure_gdb(self):

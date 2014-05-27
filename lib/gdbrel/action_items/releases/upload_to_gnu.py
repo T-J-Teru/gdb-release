@@ -27,8 +27,8 @@ the following actions:
      %% lftp ftp-upload.gnu.org/incoming/ftp
      ftp> put %(release.tarball)s.gz %(release.tarball)s.gz.sig\
  %(release.tarball)s.gz.directive.asc
-     ftp> put %(release.tarball)s.bz2 %(release.tarball)s.bz2.sig\
- %(release.tarball)s.bz2.directive.asc
+     ftp> put %(release.tarball)s.xz %(release.tarball)s.xz.sig\
+ %(release.tarball)s.xz.directive.asc
 
   2. Wait for 5-10 minutes to see if the upload was successful or not.
      The uploads are processed every 5 mins.
@@ -48,7 +48,7 @@ class AI(AbstractReleaseCreationAI):
                          '(only full releases get uploaded there)')
             return
 
-        for tarball_ext in ('.bz2', '.gz'):
+        for tarball_ext in ('.xz', '.gz'):
             self.__create_updload_files(tarball_ext)
         self.__upload_tarballs()
 

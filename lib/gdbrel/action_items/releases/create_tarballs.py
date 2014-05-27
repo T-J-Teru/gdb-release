@@ -77,7 +77,7 @@ class AI(AbstractReleaseCreationAI):
     def __compress_tarballs(self):
         src = os.path.join(self.cfg['setup.tmp_dir'],
                            self.cfg.release_tarball)
-        for zip_tool in ('bzip2', 'gzip'):
+        for zip_tool in ('xz', 'gzip'):
             dst = os.path.join(self.cfg['setup.tmp_dir'],
                                self.cfg['release.%s_tarball' % zip_tool])
             trace('Creating %s...' % dst)
