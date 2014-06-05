@@ -1,5 +1,5 @@
 from gdbrel.action_items.branches import AbstractBranchCreationAI
-from gdbrel.utils import trace
+from gdbrel.utils import trace, error
 
 import os
 
@@ -18,15 +18,26 @@ class AI(AbstractBranchCreationAI):
         return 'set development to false'
 
     def do_AI(self):
-        DEVEL_FILENAME = 'gdb/development.sh'
-
         self.sandbox.checkout(self.release_branch)
 
+        # For newer versions of binutils-gdb.git, the development.sh
+        # script lives in bfd/. But we want to maintain a certain amount
+        # of support for older versions of GDB, in case we want to make
+        # new releases on old branches. So, try each location...
+        DEVEL_FILENAMES = ('bfd/development.sh', 'gdb/development.sh')
+        devel_file = None
+        for f in DEVEL_FILENAMES:
+            if os.path.isfile(f):
+                devel_file = f
+                break
+        if devel_file is None:
+            error('Cannot find development.sh script')
+
         # Change 'development=true' into 'development=false'.
-        trace('Fixing %s...' % DEVEL_FILENAME)
-        with self.sandbox.open(DEVEL_FILENAME) as f:
+        trace('Fixing %s...' % devel_file)
+        with self.sandbox.open(devel_file) as f:
             old_txt = f.readlines()
-        with self.sandbox.open(DEVEL_FILENAME, 'w') as f:
+        with self.sandbox.open(devel_file, 'w') as f:
             for l in old_txt:
                 if l.startswith('development='):
                     l = 'development=false\n'
@@ -34,5 +45,5 @@ class AI(AbstractBranchCreationAI):
 
         # Commit the change...
         rev_log = (DEVEL_COMMIT_REV_LOG
-                   % {'devel_basename': os.path.basename(DEVEL_FILENAME)})
-        self.commit(self.release_branch, DEVEL_FILENAME, rev_log)
+                   % {'devel_basename': os.path.basename(devel_file)})
+        self.commit(self.release_branch, devel_file, rev_log)
