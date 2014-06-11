@@ -96,6 +96,10 @@ class GitSandbox(object):
     def fullpath(self, rel_path):
         return os.path.join(self.sandbox_dir, rel_path)
 
+    def isfile(self, filename):
+        fullpath = os.path.join(self.path, filename)
+        return os.path.isfile(fullpath)
+
     def open(self, filename, mode=None):
         args = [os.path.join(self.path, filename)]
         if mode is not None:

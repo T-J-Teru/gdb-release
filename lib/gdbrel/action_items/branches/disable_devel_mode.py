@@ -6,7 +6,7 @@ import os
 DEVEL_COMMIT_REV_LOG = """\
 Set development mode to "off" by default.
 
-gdb/ChangeLog:
+%(devel_dirname)s/ChangeLog:
 
 \t* %(devel_basename)s (development): Set to false.
 """
@@ -27,7 +27,7 @@ class AI(AbstractBranchCreationAI):
         DEVEL_FILENAMES = ('bfd/development.sh', 'gdb/development.sh')
         devel_file = None
         for f in DEVEL_FILENAMES:
-            if os.path.isfile(f):
+            if self.sandbox.isfile(f):
                 devel_file = f
                 break
         if devel_file is None:
@@ -45,5 +45,7 @@ class AI(AbstractBranchCreationAI):
 
         # Commit the change...
         rev_log = (DEVEL_COMMIT_REV_LOG
-                   % {'devel_basename': os.path.basename(devel_file)})
+                   % {'devel_dirname': os.path.dirname(devel_file),
+                      'devel_basename': os.path.basename(devel_file),
+                      })
         self.commit(self.release_branch, devel_file, rev_log)
