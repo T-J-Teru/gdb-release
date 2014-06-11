@@ -1,7 +1,7 @@
 from gdbrel.action_items.branches import AbstractBranchCreationAI
 from gdbrel.emails import Email
 
-EMAIL_SUBJECT = "GDB %(release.branch-version)s release process created!"
+EMAIL_SUBJECT = "GDB %(release.branch-version)s release branch created!"
 
 EMAIL_BODY = """\
 Hello,
