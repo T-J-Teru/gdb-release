@@ -21,3 +21,5 @@ gdb-7.8-branch:
     branchpoint: 173373c6f6388171d1d62a217fae90a052395be2
     branch-version: !!str 7.8
     do_release: 7.7.90
+    do_release: 7.7.91
+    do_release: !!str 7.8
