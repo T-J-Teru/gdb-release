@@ -47,12 +47,25 @@ class AI(AbstractReleaseCreationAI):
 
     def __create_tarballs(self):
         MAKE_TAR_OUT = '%(setup.tmp_dir)s/make_tar.out' % self.cfg
-        trace('running "make -f src-release"...',
-              'tip: %% tail -f %s' % MAKE_TAR_OUT)
-        with open(MAKE_TAR_OUT, 'w') as out_fd:
-            status = call('make -f src-release gdb.tar'.split(),
-                          cwd=self.sandbox.path,
-                          stdout=out_fd, stderr=STDOUT)
+        if os.path.exists(os.path.join(self.sandbox.path,'src-release.sh')):
+            # This is the latest way of creating the release tarball,
+            # where the "src-release" Makefile has been converted to
+            # the "src-release.sh" script.
+            trace('running "./src-release.sh gdb"...',
+                  'tip: %% tail -f %s' % MAKE_TAR_OUT)
+            with open(MAKE_TAR_OUT, 'w') as out_fd:
+                status = call('./src-release.sh gdb'.split(),
+                              cwd=self.sandbox.path,
+                              stdout=out_fd, stderr=STDOUT)
+        else:
+            # Old-style way of creating the release tarball, based on
+            # the "src-release" Makefile.  Used up to the GDB 7.8 branch.
+            trace('running "make -f src-release"...',
+                  'tip: %% tail -f %s' % MAKE_TAR_OUT)
+            with open(MAKE_TAR_OUT, 'w') as out_fd:
+                status = call('make -f src-release gdb.tar'.split(),
+                              cwd=self.sandbox.path,
+                              stdout=out_fd, stderr=STDOUT)
         if status != 0:
             raise FatalError(
                 'Tarball creation failed (return %d). Aborting.' % status,
