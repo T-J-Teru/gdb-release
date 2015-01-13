@@ -1,4 +1,4 @@
-current-branch: gdb-7.8-branch
+current-branch: gdb-7.9-branch
 
 gdb_7_6-branch:
     # branchpoint date: Sun Nov 3 00:00:05 2013 +0000
@@ -24,3 +24,9 @@ gdb-7.8-branch:
     do_release: 7.7.91
     do_release: !!str 7.8
     do_release: !!str 7.8.1
+
+gdb-7.9-branch:
+    # branchpoint date: Tue Jan 13 14:36:34 2015 +0400
+    branchpoint: 92fc2e6978d9a7c8324c7e851dbee59e22ec7a37
+    branch-version: !!str 7.9
+    do_release: 7.8.90
