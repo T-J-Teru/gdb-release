@@ -19,6 +19,8 @@ from gdbrel.action_items.releases.unfreeze_branch\
     import AI as unfreeze_branch
 from gdbrel.action_items.releases.sanity_check\
     import AI as sanity_check
+from gdbrel.action_items.releases.push_release_tag\
+    import AI as push_release_tag
 from gdbrel.action_items.releases.upload_to_sourceware\
     import AI as upload_to_sourceware
 from gdbrel.action_items.releases.upload_to_gnu\
@@ -108,6 +110,7 @@ class AI(AbstractReleaseCreationAI):
                    # associated commits and publish them now.  That way,
                    # we reduce the chances of conflict with changes from
                    # other contributors.
+                   push_release_tag,
                    add_release_in_changelog,
                    update_schedule,
                    bump_version_on_branch,

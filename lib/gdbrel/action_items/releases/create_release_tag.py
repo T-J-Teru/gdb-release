@@ -2,8 +2,6 @@ from gdbrel.action_items.releases import AbstractReleaseCreationAI
 from gdbrel.errors import FatalError
 from gdbrel.utils import trace, query, indent
 
-import sys
-
 NEW_TAG_QUERY = """\
 Creating the release tag...
 
@@ -23,9 +21,14 @@ GDB %(release.do_release)s Release.
 VERIFY_TAG_QUERY = """\
 Please verify that we created the tag correctly.
 
+Note that this tag will be pushed later on, after we've made the tarball;
+this way, if anything happens during tarball creation, we can re-create
+the tag, since that tag has not been publicly pushed yet.
+
 %(tag_info)s
 
-Should we go ahead and push that tag to the official repository?
+Is everything correct in this tag?
+
 
 """
 
@@ -77,11 +80,8 @@ class AI(AbstractReleaseCreationAI):
                      message=TAG_REV_LOG % self.cfg)
 
         # Now that the tag has been created, let's be extra paranoid
-        # and ask the user to double-check the tag before pushing it.
-        # (the --stat is there to avoid the "diff")
+        # and ask the user to double-check the tag before continuing
+        # further (the --stat is there to avoid the "diff")
         tag_info = self.git.show(tag_name, stat=True, color=True)
         subst['tag_info'] = indent(tag_info, '| ')
         query(VERIFY_TAG_QUERY % subst)
-        trace('Pushing new tag (${hl_sbu}%(tag_name)s${hl_ebu})'
-              ' to remote...' % subst)
-        self.git.push('origin', tag_name, _outfile=sys.stdout)
