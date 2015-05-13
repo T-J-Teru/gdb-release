@@ -23,7 +23,7 @@ Skipping tag creation, This is only a pre-release\
 class AI(AbstractReleaseCreationAI):
     @property
     def name(self):
-        return 'create release tag'
+        return 'push release tag'
 
     def do_AI(self):
         if self.is_pre_release():
