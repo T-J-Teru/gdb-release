@@ -52,7 +52,8 @@ class AI(AbstractReleaseCreationAI):
                      'rel_manager.name': self.cfg['rel_manager.name'],
                      }
             # Add ANNOUNCE from htdocs to subst.
-            email_to = self.cfg['gdb_repo.email.announce']
+            email_to = ', '.join([self.cfg['gdb_repo.email.announce'],
+                                  self.cfg['gdb_repo.email.info-gnu']])
             email_subject = RELEASE_SUBJECT % self.cfg
             email_body = RELEASE_BODY % subst
 
