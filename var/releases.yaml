@@ -39,3 +39,4 @@ gdb-7.10-branch:
     branchpoint: 66c4b3e8a628a207bc6aafef6af0c4128195f56e
     branch-version: !!str 7.10
     do_release: !!str 7.9.90
+    do_release: !!str 7.10
