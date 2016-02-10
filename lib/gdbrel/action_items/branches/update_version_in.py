@@ -49,8 +49,8 @@ class AI(AbstractBranchCreationAI):
             # On the head branch, we update the "major.minor" part
             # of the version number to the branch version number, leaving
             # the "micro" part intact.  For instance, when if we're at
-            # version 6.7.50-DATE-cvs, and the branch version is 7.0,
-            # then the new version becomes 7.0.50-DATE-cvs.
+            # version 6.7.50-DATE-git, and the branch version is 7.0,
+            # then the new version becomes 7.0.50-DATE-git.
             new = re.sub(r'\d+.\d+.', r'%s.'
                          % self.cfg['release.branch-version'],
                          old)

@@ -42,7 +42,7 @@ class AI(AbstractReleaseCreationAI):
             # micro number set to "0".
             #
             # That way, after release x.y got released, the version number
-            # for the snapshots become x.y.0.DATE-cvs, instead of just
-            # x.y.DATE-cvs (as per the internals' manual).
+            # for the snapshots become x.y.0.DATE-git, instead of just
+            # x.y.DATE-git (as per the internals' manual).
             release_version = release_version + '.0'
-        return '%s.DATE-cvs' % release_version
+        return '%s.DATE-git' % release_version
