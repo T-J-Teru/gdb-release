@@ -47,3 +47,4 @@ gdb-7.11-branch:
     branchpoint: 9ef9e6a6a0dd8f948708cb67c9afcfd0be40cb0a
     branch-version: !!str 7.11
     do_release: !!str 7.10.90
+    do_release: !!str 7.11
