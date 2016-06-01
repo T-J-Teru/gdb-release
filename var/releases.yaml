@@ -48,3 +48,4 @@ gdb-7.11-branch:
     branch-version: !!str 7.11
     do_release: !!str 7.10.90
     do_release: !!str 7.11
+    do_release: !!str 7.11.1
