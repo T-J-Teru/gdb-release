@@ -1,4 +1,4 @@
-current-branch: gdb-7.11-branch
+current-branch: gdb-7.12-branch
 
 gdb_7_6-branch:
     # branchpoint date: Sun Nov 3 00:00:05 2013 +0000
@@ -49,3 +49,9 @@ gdb-7.11-branch:
     do_release: !!str 7.10.90
     do_release: !!str 7.11
     do_release: !!str 7.11.1
+
+gdb-7.12-branch:
+    # branchpoint date: Thu Jul 28 14:37:02 2016 +0100
+    branchpoint: 41bfcd638a4e0e48b96ce4de2845372dea481322
+    branch-version: !!str 7.12
+    do_release: !!str 7.11.90
