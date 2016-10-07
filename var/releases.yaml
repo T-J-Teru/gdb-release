@@ -55,3 +55,4 @@ gdb-7.12-branch:
     branchpoint: 41bfcd638a4e0e48b96ce4de2845372dea481322
     branch-version: !!str 7.12
     do_release: !!str 7.11.90
+    do_release: !!str 7.12
