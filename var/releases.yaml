@@ -56,3 +56,4 @@ gdb-7.12-branch:
     branch-version: !!str 7.12
     do_release: !!str 7.11.90
     do_release: !!str 7.12
+    do_release: !!str 7.12.1
