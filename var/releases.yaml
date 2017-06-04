@@ -63,3 +63,4 @@ gdb-8.0-branch:
     branchpoint: 725bf5cf125783c2a7ca4ab63d3768e220bab2db
     branch-version: !!str 8.0
     do_release: !!str 7.99.91
+    do_release: !!str 8.0
