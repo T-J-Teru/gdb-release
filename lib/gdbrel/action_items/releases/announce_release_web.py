@@ -1,6 +1,9 @@
 from gdbrel.action_items.releases import AbstractReleaseCreationAI
 from gdbrel.utils import query, info_skipped
 
+from string import Template
+
+
 QUERY_BLURB = """\
 Please post the creation of the release on the website:
 
@@ -11,6 +14,11 @@ Please post the creation of the release on the website:
  2. cd htdocs
 
  3. Update ${hl_sbu}download/ANNOUNCEMENT${hl_ebu}
+
+    Remember to provide the gitweb URL to the gdb/NEWS file corresponding
+    to our release:
+
+        ${hl_sbu}${hl_warn}https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;a=blob_plain;f=gdb/NEWS;hb=${tag}${no_hl}
 
  4. Update ${hl_sbu}download/index.html${hl_ebu}
     (just update the version number of the latest release)
@@ -52,4 +60,5 @@ class AI(AbstractReleaseCreationAI):
             info_skipped('This is a pre-release, skipping...')
             return
 
-        query(QUERY_BLURB)
+        query(Template(QUERY_BLURB).safe_substitute(
+            tag=self.cfg['release.tag']))
