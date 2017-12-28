@@ -33,6 +33,11 @@ sourceware: &sourceware
     docs_dir: ${sourceware.htdocs_dir}/gdb/download/onlinedocs
     ari_dir:  ${sourceware.htdocs_dir}/gdb/download/ari
 
+bugzilla:
+    url: https://sourceware.org/bugzilla
+    rest_suburl: rest
+    show_bug_suburl: show_bug.cgi
+
 setup:
    var_dir: ${root_dir}/var
    tmp_dir: ${root_dir}/tmp
