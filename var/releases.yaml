@@ -1,20 +1,56 @@
 current-branch: gdb-8.2-branch
 
-gdb_7_6-branch:
-    # branchpoint date: Sun Nov 3 00:00:05 2013 +0000
-    branchpoint: 531a94fdb5a9a7b099bbe72d89d77b15faa0c53c
-    branch-version: !!str 7.6
-    # All previous 7.6.x releases have been done prior to the switch
-    # to git.
-    do_release: 7.6.2
+gdb-8.2-branch:
+    # branchpoint date: Wed Jul 4 16:13:29 2018 +0100
+    branchpoint: 1b919490e8ba30bf1d6941df0ed112b0e557017e
+    branch-version: !!str 8.2
 
-gdb-7.7-branch:
-    # branchpoint date: Wed Jan 8 13:16:32 2014 +0400
-    branchpoint: 79301218fa0f074c5656db0ec8972a5ddcf91fb5
-    branch-version: !!str 7.7
-    do_release: 7.6.90
-    do_release: !!str 7.7
-    do_release: !!str 7.7.1
+gdb-8.1-branch:
+    # branchpoint date: Fri Jan 5 00:00:35 2018 +0000
+    branchpoint: 5219ac6237c272b938c28517bf371429260c71e7
+    branch-version: !!str 8.1
+    do_release: !!str 8.0.91
+    do_release: !!str 8.1
+
+gdb-8.0-branch:
+    # branchpoint date: Sat Apr 15 00:00:36 2017 +0000
+    branchpoint: 725bf5cf125783c2a7ca4ab63d3768e220bab2db
+    branch-version: !!str 8.0
+    do_release: !!str 7.99.91
+    do_release: !!str 8.0
+    do_release: !!str 8.0.1
+
+gdb-7.12-branch:
+    # branchpoint date: Thu Jul 28 14:37:02 2016 +0100
+    branchpoint: 41bfcd638a4e0e48b96ce4de2845372dea481322
+    branch-version: !!str 7.12
+    do_release: !!str 7.11.90
+    do_release: !!str 7.12
+    do_release: !!str 7.12.1
+
+gdb-7.11-branch:
+    # branchpoint date: Mon Feb 8 12:57:22 2016 -0800
+    branchpoint: 9ef9e6a6a0dd8f948708cb67c9afcfd0be40cb0a
+    branch-version: !!str 7.11
+    do_release: !!str 7.10.90
+    do_release: !!str 7.11
+    do_release: !!str 7.11.1
+
+gdb-7.10-branch:
+    # branchpoint date: Mon Jul 6 16:09:21 2015 -0300
+    branchpoint: 66c4b3e8a628a207bc6aafef6af0c4128195f56e
+    branch-version: !!str 7.10
+    do_release: !!str 7.9.90
+    do_release: !!str 7.10
+    do_release: !!str 7.10.1
+
+gdb-7.9-branch:
+    # branchpoint date: Tue Jan 13 14:36:34 2015 +0400
+    branchpoint: 92fc2e6978d9a7c8324c7e851dbee59e22ec7a37
+    branch-version: !!str 7.9
+    do_release: 7.8.90
+    do_release: !!str 7.9
+    do_release: !!str 7.9.1
 
 gdb-7.8-branch:
     # branchpoint date: Tue May 27 11:57:33 2014 +0100
@@ -26,54 +62,18 @@ gdb-7.8-branch:
     do_release: !!str 7.8.1
     do_release: !!str 7.8.2
 
-gdb-7.9-branch:
-    # branchpoint date: Tue Jan 13 14:36:34 2015 +0400
-    branchpoint: 92fc2e6978d9a7c8324c7e851dbee59e22ec7a37
-    branch-version: !!str 7.9
-    do_release: 7.8.90
-    do_release: !!str 7.9
-    do_release: !!str 7.9.1
+gdb-7.7-branch:
+    # branchpoint date: Wed Jan 8 13:16:32 2014 +0400
+    branchpoint: 79301218fa0f074c5656db0ec8972a5ddcf91fb5
+    branch-version: !!str 7.7
+    do_release: 7.6.90
+    do_release: !!str 7.7
+    do_release: !!str 7.7.1
 
-gdb-7.10-branch:
-    # branchpoint date: Mon Jul 6 16:09:21 2015 -0300
-    branchpoint: 66c4b3e8a628a207bc6aafef6af0c4128195f56e
-    branch-version: !!str 7.10
-    do_release: !!str 7.9.90
-    do_release: !!str 7.10
-    do_release: !!str 7.10.1
-
-gdb-7.11-branch:
-    # branchpoint date: Mon Feb 8 12:57:22 2016 -0800
-    branchpoint: 9ef9e6a6a0dd8f948708cb67c9afcfd0be40cb0a
-    branch-version: !!str 7.11
-    do_release: !!str 7.10.90
-    do_release: !!str 7.11
-    do_release: !!str 7.11.1
-
-gdb-7.12-branch:
-    # branchpoint date: Thu Jul 28 14:37:02 2016 +0100
-    branchpoint: 41bfcd638a4e0e48b96ce4de2845372dea481322
-    branch-version: !!str 7.12
-    do_release: !!str 7.11.90
-    do_release: !!str 7.12
-    do_release: !!str 7.12.1
-
-gdb-8.0-branch:
-    # branchpoint date: Sat Apr 15 00:00:36 2017 +0000
-    branchpoint: 725bf5cf125783c2a7ca4ab63d3768e220bab2db
-    branch-version: !!str 8.0
-    do_release: !!str 7.99.91
-    do_release: !!str 8.0
-    do_release: !!str 8.0.1
-
-gdb-8.1-branch:
-    # branchpoint date: Fri Jan 5 00:00:35 2018 +0000
-    branchpoint: 5219ac6237c272b938c28517bf371429260c71e7
-    branch-version: !!str 8.1
-    do_release: !!str 8.0.91
-    do_release: !!str 8.1
-
-gdb-8.2-branch:
-    # branchpoint date: Wed Jul 4 16:13:29 2018 +0100
-    branchpoint: 1b919490e8ba30bf1d6941df0ed112b0e557017e
-    branch-version: !!str 8.2
+gdb_7_6-branch:
+    # branchpoint date: Sun Nov 3 00:00:05 2013 +0000
+    branchpoint: 531a94fdb5a9a7b099bbe72d89d77b15faa0c53c
+    branch-version: !!str 7.6
+    # All previous 7.6.x releases have been done prior to the switch
+    # to git.
+    do_release: 7.6.2
