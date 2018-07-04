@@ -4,6 +4,7 @@ gdb-8.2-branch:
     # branchpoint date: Wed Jul 4 16:13:29 2018 +0100
     branchpoint: 1b919490e8ba30bf1d6941df0ed112b0e557017e
     branch-version: !!str 8.2
+    do_release: !!str 8.1.90
 
 gdb-8.1-branch:
     # branchpoint date: Fri Jan 5 00:00:35 2018 +0000
