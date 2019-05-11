@@ -6,6 +6,7 @@ gdb-8.3-branch:
     branch-version: !!str 8.3
     do_release: !!str 8.2.90
     do_release: !!str 8.2.91
+    do_release: !!str 8.3
 
 gdb-8.2-branch:
     # branchpoint date: Wed Jul 4 16:13:29 2018 +0100
