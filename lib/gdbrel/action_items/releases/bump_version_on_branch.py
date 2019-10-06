@@ -39,12 +39,7 @@ class AI(AbstractReleaseCreationAI):
         release_version = self.release_version
         if len(release_version.split('.')) < 3:
             # There is no micro number in the version number, which means
-            # we just created the first official release from this branch.
-            # For versioning purposes, this is equivalent to having the
-            # micro number set to "0".
-            #
-            # That way, after release x.y got released, the version number
-            # for the snapshots become x.y.0.DATE-git, instead of just
-            # x.y.DATE-git (as per the internals' manual).
-            release_version = release_version + '.0'
+            # we just created an official release from this branch.
+            # Add the '.90' micro number at the end.
+            release_version = release_version + '.90'
         return '%s.DATE-git' % release_version

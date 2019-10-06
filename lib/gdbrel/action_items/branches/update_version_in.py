@@ -46,14 +46,15 @@ class AI(AbstractBranchCreationAI):
             # number, usually updating it from .50 to .90.
             new = re.sub(r'(\d+\.\d+)\.\d+\.', r'\1.90.', old)
         else:
-            # On the head branch, we update the "major.minor" part
-            # of the version number to the branch version number, leaving
-            # the "micro" part intact.  For instance, when if we're at
-            # version 6.7.50-DATE-git, and the branch version is 7.0,
-            # then the new version becomes 7.0.50-DATE-git.
-            new = re.sub(r'\d+.\d+.', r'%s.'
-                         % self.cfg['release.branch-version'],
-                         old)
+            # On the head branch, we just increment the "major" part
+            # of the version number by one. The rest stays the same.
+            m = re.match(r'(?P<major>\d+)(?P<rest>\..*)', old)
+            if m is None:
+                error('Unable to parse version number in {} ({}).'
+                      .format(old, VERSION_IN_FILENAME),
+                      'Cannot compute new version number for master')
+            major = int(m.group('major'))
+            new = str(major + 1) + m.group('rest')
 
         # Write that new version number:
         with self.sandbox.open(VERSION_IN_FILENAME, 'w') as f:

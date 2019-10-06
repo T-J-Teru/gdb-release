@@ -1,3 +1,14 @@
+# For the GDB 9.x releases, do the following:
+#
+# Create a new entry called "gdb-9-branch" (same as "gdb-8.3-branch"),
+# and provide the branchpoint, and the "branch-version" should be
+# set to "!!str 9".
+#
+# For releases and pre-releases, use the "do_release" as usual. E.g:
+#      do_release: !!str 9.0.90
+#      do_release: !!str 9.1
+#      do_release: !!str 9.2
+
 current-branch: gdb-8.3-branch
 
 gdb-8.3-branch:
