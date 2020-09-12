@@ -1,8 +1,6 @@
 from gdbrel.action_items.releases import AbstractReleaseCreationAI
 from gdbrel.utils import trace
 
-import re
-
 VERSION_IN_COMMIT_REV_LOG = """\
 Set GDB version number to %(release.do_release)s.
 
