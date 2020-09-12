@@ -54,6 +54,7 @@ setup:
 #         << : *gdb_repo_email
 #         announce: brobecke@joel.gnat.com
 #         patches: brobecker@joel.gnat.com
+#         info-gnu: brobecker@joel.gnat.com
 #
 # sourceware:
 #     << : *sourceware
