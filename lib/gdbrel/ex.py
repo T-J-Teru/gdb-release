@@ -19,7 +19,7 @@ def run(title, cmd, stdin=None, stdout=None, stderr=STDOUT,
           failed, instead of returning the command's return code.
     """
     out_filename = None
-    if isinstance(stdout, basestring):
+    if isinstance(stdout, str):
         out_filename = stdout
         stdout = open(out_filename, 'w')
 

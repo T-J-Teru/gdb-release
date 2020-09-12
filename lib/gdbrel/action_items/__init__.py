@@ -102,7 +102,7 @@ class AbstractAI(object):
         # If checking in a single file, it is acceptable to pass it
         # directly, rather than embedding it in an iterable.  Just
         # turn into to a single-element tuple instead.
-        if isinstance(files, basestring):
+        if isinstance(files, str):
             files = (files, )
         if review_insns is None:
             review_insns = (

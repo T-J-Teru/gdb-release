@@ -17,7 +17,7 @@ class FlatYaml(object):
             self.__resolve(k)
 
     def __flatten(self, subtree, parent_tree_name):
-        if isinstance(subtree, basestring):
+        if isinstance(subtree, str):
             self.flattened[parent_tree_name] = subtree
         else:
             # At the moment, we do not need to support collections...
