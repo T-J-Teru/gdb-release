@@ -1,5 +1,5 @@
 from gdbrel.action_items.branches import AbstractBranchCreationAI
-from gdbrel.utils import trace
+from gdbrel.utils import error, trace
 
 import re
 
