@@ -17,7 +17,7 @@ class Checklist(object):
         self.info = []
         if os.path.exists(self.filename):
             with open(self.filename) as f:
-                self.info = yaml.load(f) or []
+                self.info = yaml.safe_load(f) or []
 
     def is_done(self, category, action_item):
         if category is None:

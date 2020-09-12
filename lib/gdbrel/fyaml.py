@@ -11,7 +11,7 @@ class FlatYaml(object):
         self.yaml_filename = yaml_filename
         self.flattened = dict(env)
         with open(yaml_filename) as f:
-            self.root_tree = yaml.load(f)
+            self.root_tree = yaml.safe_load(f)
         self.__flatten(self.root_tree, None)
         for k in self.flattened.keys():
             self.__resolve(k)

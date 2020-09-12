@@ -26,7 +26,7 @@ class Config(object):
         with open(self['setup.release_data_file']) as f:
             def namespace(s):
                 return 'release.%s' % s
-            info = yaml.load(f)
+            info = yaml.safe_load(f)
             branch_name = info['current-branch']
             branch_info = info[branch_name]
 
