@@ -47,7 +47,7 @@ class AI(AbstractReleaseCreationAI):
 
     def __create_tarballs(self):
         MAKE_TAR_OUT = '%(setup.tmp_dir)s/make_tar.out' % self.cfg
-        if os.path.exists(os.path.join(self.sandbox.path,'src-release.sh')):
+        if os.path.exists(os.path.join(self.sandbox.path, 'src-release.sh')):
             # This is the latest way of creating the release tarball,
             # where the "src-release" Makefile has been converted to
             # the "src-release.sh" script.
