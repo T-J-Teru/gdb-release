@@ -35,7 +35,7 @@ def _inform(indent='', hl_type=None, *args):
 
     hl_print(hl_type, indent + args[0])
     for arg in args[1:]:
-        print ' ' * len(indent) + apply_highlighting(arg)
+        print(' ' * len(indent) + apply_highlighting(arg))
 
 
 def trace(*args):
@@ -63,7 +63,7 @@ def warn(*args):
 def error(*args):
     assert len(args) > 0
     # Print a new-line, since we might not be at the start of a line...
-    print
+    print()
     for arg in args:
         hl_print('hl_err', '*** ' + arg)
     sys.exit(1)
