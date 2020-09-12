@@ -42,6 +42,12 @@ def do_release(ROOT_DIR):
                       single_branch=True,
                       branch=cfg['gdb_repo.head_branch'],
                       _outfile=sys.stdout)
+    else:
+        # If the repository was already created, make sure the URL
+        # of the remote matches the URL we got fromt he config file
+        # (the official URL almost never changes, but we do occasionally
+        # override that URL to a local one when testing these scripts).
+        sandbox.git.remote('set-url', 'origin', cfg['gdb_repo.url'])
 
     MaybeCreateBranch(cfg, cklist, sandbox)
     MaybeCreateRelease(cfg, cklist, sandbox)
