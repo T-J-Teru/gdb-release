@@ -38,10 +38,10 @@ class AI(AbstractBranchCreationAI):
         with self.sandbox.open(devel_file) as f:
             old_txt = f.readlines()
         with self.sandbox.open(devel_file, 'w') as f:
-            for l in old_txt:
-                if l.startswith('development='):
-                    l = 'development=false\n'
-                f.write(l)
+            for line in old_txt:
+                if line.startswith('development='):
+                    line = 'development=false\n'
+                f.write(line)
 
         # Commit the change...
         rev_log = (DEVEL_COMMIT_REV_LOG
