@@ -135,7 +135,7 @@ class AbstractAI(object):
 
         # Add those entries to the corresponding ChangeLog files,
         # and then "git add" them.
-        for (cl_filename, cl_text) in cl_entries.iteritems():
+        for (cl_filename, cl_text) in cl_entries.items():
             self.add_changelog_entry(cl_filename=cl_filename,
                                      cl_text=cl_text)
             self.git.add(cl_filename)

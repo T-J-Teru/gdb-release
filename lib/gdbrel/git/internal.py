@@ -48,7 +48,7 @@ def git_run(command, *args, **kwargs):
     outfile = None
     do_split_lines = False
     cwd = None
-    for (k, v) in kwargs.iteritems():
+    for (k, v) in kwargs.items():
         if k == '_input':
             input = v
         elif k == '_outfile':

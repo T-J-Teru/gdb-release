@@ -22,7 +22,7 @@ class FlatYaml(object):
         else:
             # At the moment, we do not need to support collections...
             assert isinstance(subtree, dict)
-            for k, v in subtree.iteritems():
+            for k, v in subtree.items():
                 self.__flatten(v, self.__tree_name(parent_tree_name, k))
 
     def __resolve(self, key):

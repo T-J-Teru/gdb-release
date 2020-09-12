@@ -31,7 +31,7 @@ class Config(object):
             branch_info = info[branch_name]
 
             self.data[namespace('branch_name')] = info['current-branch']
-            for k, v in branch_info.iteritems():
+            for k, v in branch_info.items():
                 self.data[namespace(k)] = v
 
         # Provide the release "kind" as "release.kind" in our config

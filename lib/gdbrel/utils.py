@@ -103,7 +103,7 @@ def get_changelog_entries(rev_log):
                 current_cl_text.append(line)
 
     # Remove all empty lines at the end of each ChangeLog entry.
-    for (_, cl_text) in result.iteritems():
+    for (_, cl_text) in result.items():
         while cl_text and (not cl_text[-1] or cl_text[-1].isspace()):
             cl_text.pop()
 
