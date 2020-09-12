@@ -17,6 +17,7 @@ gdb-9-branch:
     branch-version: !!str 9
     do_release: !!str 9.0.90
     do_release: !!str 9.1
+    do_release: !!str 9.2
 
 gdb-8.3-branch:
     # branchpoint date: Tue Feb 26 23:45:50 2019 -0500
