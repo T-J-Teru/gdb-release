@@ -121,7 +121,7 @@ class AbstractAI(object):
               ' (on branch: ${hl_sbu}%s${hl_ebu}):'
               % current_branch,
               *('  - %s' % filename for filename in files))
-        print
+        print()
 
         # First, "git add" all files to be checked in.
         for f in files:
