@@ -13,9 +13,9 @@ def main():
     from gdbrel.errors import FatalError
     try:
         gdbrel.do_release(ROOT_DIR)
-    except FatalError, E:
+    except FatalError as e:
         from gdbrel.utils import error
-        error(str(E))
+        error(str(e))
         sys.exit(1)
 
 
