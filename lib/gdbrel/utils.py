@@ -25,6 +25,7 @@ def hl_print(hl_type, s, out=sys.stdout, new_line=True):
     out.write(apply_highlighting(s))
     if new_line:
         out.write('\n')
+    out.flush()
 
 
 def _inform(indent='', hl_type=None, *args):
