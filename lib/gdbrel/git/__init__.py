@@ -1,2 +1,2 @@
 # Re-export the Git class.
-from internal import Git
+from .internal import Git
