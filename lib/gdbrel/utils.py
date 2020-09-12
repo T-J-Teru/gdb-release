@@ -87,20 +87,20 @@ def get_changelog_entries(rev_log):
     cl_prog = re.compile(r'(\S*\bChangeLog):\S*$', re.IGNORECASE)
     result = {}
     current_cl_text = None
-    for l in rev_log.splitlines():
-        m = cl_prog.match(l)
+    for line in rev_log.splitlines():
+        m = cl_prog.match(line)
         if m is not None:
             # Start of a new ChangeLog entry...
             current_cl_text = []
             result[m.group(1)] = current_cl_text
-        elif l and not l[0:1].isspace():
+        elif line and not line[0:1].isspace():
             # Line does not start with whitespace. It cannot be part
             # of a ChangeLog entry.  So close the current_cl_text.
             current_cl_text = None
         elif current_cl_text is not None:
             # Do not add empty lines before the start of the CL text.
-            if l.strip() or current_cl_text:
-                current_cl_text.append(l)
+            if line.strip() or current_cl_text:
+                current_cl_text.append(line)
 
     # Remove all empty lines at the end of each ChangeLog entry.
     for (_, cl_text) in result.iteritems():
