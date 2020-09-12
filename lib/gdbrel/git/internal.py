@@ -74,7 +74,7 @@ def git_run(command, *args, **kwargs):
     stdin = None if input is None else PIPE
 
     process = Popen(to_run, stdout=stdout, stderr=STDOUT, stdin=stdin,
-                    cwd=cwd)
+                    cwd=cwd, text=True)
     output, error = process.communicate(input)
     # We redirected stderr to the same fd as stdout, so error should
     # not contain anything.
