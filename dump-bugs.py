@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 """List all GDB bugs fixed in a given release.
 
 This script takes a version number as input, and generates a list of
