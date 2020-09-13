@@ -33,6 +33,13 @@ class AI(AbstractBranchCreationAI):
               % {'filename': VERSION_IN_FILENAME,
                  'branch_name': branch_name})
 
+        files_to_commit = [VERSION_IN_FILENAME]
+
+        # If not None, it means we updated the default.exp testcase,
+        # and this variable contains its associated ChangeLog entry
+        # (this does not include the gdb/testsuite/ChangeLog "header").
+        default_exp_CL_entry = None
+
         self.sandbox.checkout(branch_name)
 
         # Get the current version number.
@@ -56,13 +63,29 @@ class AI(AbstractBranchCreationAI):
             major = int(m.group('major'))
             new = str(major + 1) + m.group('rest')
 
+            # Now that we updated the major version number, we also need
+            # to update the corresponding test in default.exp.
+
+            (default_exp_filename, default_exp_CL_entry) = \
+                self.update_gdb_version_in_default_exp(
+                    var_name='_gdb_major', new_version=str(major + 1))
+            files_to_commit.append(default_exp_filename)
+
         # Write that new version number:
         with self.sandbox.open(VERSION_IN_FILENAME, 'w') as f:
             f.write(new)
 
-        # Commit the change.
+        # Compute the commit's revision log.
         rev_log = (VERSION_IN_COMMIT_REV_LOG
                    % {'new_version': new.strip(),
                       'branch_version': self.cfg['release.branch-version'],
                       'branchpoint_SHA1': self.cfg['release.branchpoint']})
-        self.commit(branch_name, VERSION_IN_FILENAME, rev_log)
+        if default_exp_CL_entry is not None:
+            rev_log += "\n".join([
+                "",
+                "gdb/testsuite/ChangeLog:",
+                "",
+                default_exp_CL_entry])
+
+        # Commit the change.
+        self.commit(branch_name, files_to_commit, rev_log)
