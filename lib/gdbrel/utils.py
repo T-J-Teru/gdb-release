@@ -137,4 +137,4 @@ def file_size_in_MiB(filename):
     one_MiB = 1048576
     # To get the "round up" behavior, we use the trick of adding
     # the (divisior -1) to the dividend...
-    return (os.path.getsize(filename) + (one_MiB - 1)) / one_MiB
+    return (os.path.getsize(filename) + (one_MiB - 1)) // one_MiB
