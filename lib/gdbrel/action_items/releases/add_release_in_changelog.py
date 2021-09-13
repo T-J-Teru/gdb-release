@@ -17,7 +17,8 @@ class AI(AbstractReleaseCreationAI):
 
     def do_AI(self):
         self.__update_changelog(self.release_branch)
-        self.__update_changelog(self.head_branch)
+        # No longer necessary for master.
+        # self.__update_changelog(self.head_branch)
 
     def __update_changelog(self, branch):
         # For the head branch, we only want to mention official
