@@ -160,14 +160,21 @@ class AbstractAI(object):
                             else 'HEAD'))
 
         n_revs = len(self.git.rev_list(rev_list).splitlines())
-        self.git.send_email(rev_list,
-                            annotate=True, compose=(n_revs > 1),
-                            subject=subject,
-                            subject_prefix=subject_prefix,
-                            to=self.cfg['gdb_repo.email.patches'],
-                            confirm='always',
-                            no_chain_reply_to=True,
-                            _outfile=sys.stdout)
+        self.git.send_email(
+            rev_list,
+            annotate=True, compose=(n_revs > 1),
+            subject=subject,
+            subject_prefix=subject_prefix,
+            to=self.cfg['gdb_repo.email.patches'],
+            # Cc the release manager as well, in case he is
+            # on GMail, where emails sent and received back
+            # are not shown unless explicitly listed in
+            # the recipients' list.
+            cc=f"{self.cfg['rel_manager.name']} <{self.cfg['rel_manager.email']}",
+            confirm='always',
+            no_chain_reply_to=True,
+            _outfile=sys.stdout,
+        )
 
     ##############################################
     # Other miscellaneous convenience methods... #

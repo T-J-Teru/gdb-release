@@ -24,6 +24,11 @@ class Email(object):
         # Create the email's header.
         e_msg['From'] = self.email_from
         e_msg['To'] = self.email_to
+        # Bcc the sender as well, to handle the case where the Release Manager
+        # is using GMail, where emails sent to mailing-lists are not displayed
+        # in the INBOX, even if a member of the mailing-list.  With the Bcc,
+        # it should always be shown.
+        e_msg['Bcc'] = self.email_from
         e_msg['Subject'] = self.email_subject
 
         return e_msg
