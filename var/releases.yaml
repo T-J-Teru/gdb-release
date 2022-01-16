@@ -17,6 +17,7 @@ gdb-11-branch:
     branch-version: !!str 11
     do_release: !!str 11.0.90
     do_release: !!str 11.1
+    do_release: !!str 11.2
 
 gdb-10-branch:
     # branchpoint date: Sat Sep 12 12:30:56 2020 -0700
