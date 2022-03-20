@@ -130,10 +130,11 @@ class AbstractAI(object):
             self.git.add(f)
 
         # Next, extract ChangeLog entries from the revision log.
-        # We expect at least one entry.  Otherwise, something is
-        # seriously wrong.
+        # Starting with GDB 12, it's possible that ChangeLog entries
+        # might not be included anymore (requirement now dropped
+        # for GDB and binutils). We still keep support for them,
+        # for directories where ChangeLog files are still in use.
         cl_entries = get_changelog_entries(rev_log)
-        assert cl_entries
 
         # Add those entries to the corresponding ChangeLog files,
         # and then "git add" them.

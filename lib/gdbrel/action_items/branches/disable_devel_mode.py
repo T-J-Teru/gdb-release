@@ -1,14 +1,11 @@
 from gdbrel.action_items.branches import AbstractBranchCreationAI
 from gdbrel.utils import trace, error
 
-import os
-
 DEVEL_COMMIT_REV_LOG = """\
 Set development mode to "off" by default.
 
-%(devel_dirname)s/ChangeLog:
-
-\t* %(devel_basename)s (development): Set to false.
+This is done by setting the "development" variable to "false"
+in {devel_file}.
 """
 
 
@@ -44,8 +41,5 @@ class AI(AbstractBranchCreationAI):
                 f.write(line)
 
         # Commit the change...
-        rev_log = (DEVEL_COMMIT_REV_LOG
-                   % {'devel_dirname': os.path.dirname(devel_file),
-                      'devel_basename': os.path.basename(devel_file),
-                      })
+        rev_log = DEVEL_COMMIT_REV_LOG.format(devel_file=devel_file)
         self.commit(self.release_branch, devel_file, rev_log)

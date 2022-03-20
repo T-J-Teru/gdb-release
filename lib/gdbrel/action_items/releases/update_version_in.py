@@ -4,9 +4,7 @@ from gdbrel.utils import trace
 VERSION_IN_COMMIT_REV_LOG = """\
 Set GDB version number to %(release.do_release)s.
 
-gdb/ChangeLog:
-
-\t* version.in: Set GDB version number to %(release.do_release)s.
+This commit changes gdb/version.in to %(release.do_release)s.
 """
 
 

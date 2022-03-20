@@ -8,13 +8,10 @@ NEW_NEWS_SECTION = """\
 """
 
 NEWS_COMMIT_REV_LOG = """\
-Update NEWS post GDB %(branch_version)s branch creation.
+Update gdb/NEWS after GDB %(branch_version)s branch creation.
 
-gdb/ChangeLog:
-
-\t* NEWS: Create a new section for the next release branch.
-\tRename the section of the current branch, now that it has
-\tbeen cut.
+This commit a new section for the next release branch, and renames
+the section of the current branch, now that it has been cut.
 """
 
 NEWS_COMMIT_REVIEW_INSNS = """\

@@ -2,11 +2,9 @@ from gdbrel.action_items.releases import AbstractReleaseCreationAI
 from gdbrel.utils import is_pre_release, trace
 
 VERSION_IN_COMMIT_REV_LOG = """\
-Bump GDB version number to %(new_version)s.
+Bump GDB's version number to %(new_version)s.
 
-gdb/ChangeLog:
-
-\t* version.in: Set GDB version number to %(new_version)s.
+This commit changes gdb/version.in to %(new_version)s.
 """
 
 
@@ -57,7 +55,7 @@ class AI(AbstractReleaseCreationAI):
         if default_exp_CL_entry is not None:
             rev_log += "\n".join([
                 "",
-                "gdb/testsuite/ChangeLog:",
+                "This commit also makes the following changes in gdb/testsuite:",
                 "",
                 default_exp_CL_entry])
 

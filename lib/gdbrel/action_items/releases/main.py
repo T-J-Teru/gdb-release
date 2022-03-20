@@ -33,8 +33,6 @@ from gdbrel.action_items.releases.update_ari\
     import AI as update_ari
 from gdbrel.action_items.releases.email_release_announcement\
     import AI as email_release_announcement
-from gdbrel.action_items.releases.add_release_in_changelog\
-    import AI as add_release_in_changelog
 from gdbrel.action_items.releases.update_schedule\
     import AI as update_schedule
 from gdbrel.action_items.releases.bump_version_on_branch\
@@ -111,7 +109,6 @@ class AI(AbstractReleaseCreationAI):
                    # we reduce the chances of conflict with changes from
                    # other contributors.
                    push_release_tag,
-                   add_release_in_changelog,
                    update_schedule,
                    bump_version_on_branch,
                    publish_all_commits,

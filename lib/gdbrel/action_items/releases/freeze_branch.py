@@ -12,7 +12,7 @@ off this branch.
 
 Also, if at all possible, it saves me a bit of time if you can avoid
 pushing changes to the %(gdb_repo.head_branch)s branch, as it would force me
-to handle rebasing and conflict resolution (Eg: ChangeLog).
+to handle rebasing and possibly conflict resolution.
 
 I will send a followup message when the branch is open again.
 

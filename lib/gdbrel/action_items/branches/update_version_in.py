@@ -6,13 +6,12 @@ import re
 VERSION_IN_COMMIT_REV_LOG = """\
 Bump version to %(new_version)s.
 
-Now that the GDB %(branch_version)s branch has been created, we can
-bump the version number.
+Now that the GDB %(branch_version)s branch has been created,
+this commit bumps the version number in gdb/version.in to
+%(new_version)s
 
-gdb/ChangeLog:
-
-\tGDB %(branch_version)s branch created (%(branchpoint_SHA1)s):
-\t* version.in: Bump version to %(new_version)s.
+For the record, the GDB %(branch_version)s branch was created
+from commit %(branchpoint_SHA1)s.
 """
 
 
@@ -83,7 +82,8 @@ class AI(AbstractBranchCreationAI):
         if default_exp_CL_entry is not None:
             rev_log += "\n".join([
                 "",
-                "gdb/testsuite/ChangeLog:",
+                "Also, as a result of the version bump, the following changes",
+                "have been made in gdb/testsuite:",
                 "",
                 default_exp_CL_entry])
 
