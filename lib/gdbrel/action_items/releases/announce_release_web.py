@@ -42,11 +42,9 @@ Please post the creation of the release on the website:
     % cvs ci download/ANNOUNCEMENT download/index.html news/index.html\
  index.html
 
-10. Resync the www.gnu.org/software/gdb copy.
-    (done through savannah)
-
-11. Send a commit email to gdb-patches with the associated patch.
-
+    Note: No need worry about www.gnu.org/software/gdb, which is managed
+    via savannah, anymore.  There is a redirect from this website to
+    the one hosted on sourceware.org.
 """
 
 

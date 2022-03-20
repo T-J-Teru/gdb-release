@@ -23,11 +23,9 @@ Please post the creation of the branch on the website:
      % cvs ci news/index.html index.html
      (There will be a reminder later for the commit notification to be sent)
 
-  8. Resync the www.gnu.org/software/gdb copy.
-     (done through savannah)
-
-  9. Send a commit email documenting this change to gdb-patches.
-
+     Note: No need worry about www.gnu.org/software/gdb, which is managed
+     via savannah, anymore.  There is a redirect from this website to
+     the one hosted on sourceware.org.
 """
 
 
