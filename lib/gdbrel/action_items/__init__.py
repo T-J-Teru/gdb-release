@@ -77,6 +77,10 @@ class AbstractAI(object):
         return self.sandbox.git
 
     @property
+    def branchpoint_tag_name(self):
+        return f"{self.release_branch}point"
+
+    @property
     def release_branch(self):
         return self.cfg["release.branch_name"]
 

@@ -27,7 +27,7 @@ class AI(AbstractBranchCreationAI):
     def do_AI(self):
         # Ask confirmation that we're branching on the right commit.
         commit_info = self.git.show(
-            self.cfg["release.branchpoint"],
+            self.branchpoint_tag_name,
             pretty="format:" + COMMIT_INFO_FORMAT,
             quiet=True,
         )

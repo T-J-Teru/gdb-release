@@ -3,6 +3,9 @@ from gdbrel.action_items.branches.proof_read_gdb_readme import (
     AI as proof_read_gdb_readme,
 )
 from gdbrel.action_items.update_head_branch import AI as update_head_branch
+from gdbrel.action_items.branches.create_branchpoint_tag import (
+    AI as create_branchpoint_tag,
+)
 from gdbrel.action_items.branches.create_release_branch import (
     AI as create_release_branch,
 )
@@ -69,6 +72,7 @@ class AI(AbstractBranchCreationAI):
         for AI in (
             proof_read_gdb_readme,
             update_head_branch,
+            create_branchpoint_tag,
             create_release_branch,
             update_release_branch,
             update_version_in,
