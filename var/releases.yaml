@@ -9,7 +9,12 @@
 #      do_release: !!str 9.1
 #      do_release: !!str 9.2
 
-current-branch: gdb-12-branch
+current-branch: gdb-13-branch
+
+gdb-13-branch:
+    # Branchpoint date: Sun Dec 18 00:01:10 2022 +0000
+    branchpoint: 71c90666e601c511a5f495827ca9ba545e4cb463
+    branch-version: !!str 13
 
 gdb-12-branch:
     # Branchpoint date: Sun Mar 20 09:37:13 2022 +0800
