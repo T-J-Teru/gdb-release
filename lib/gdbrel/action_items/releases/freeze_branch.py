@@ -1,7 +1,7 @@
 from gdbrel.action_items.releases import AbstractReleaseCreationAI
 from gdbrel.emails import Email
 
-EMAIL_SUBJECT = 'gdb-%(release.branch-version)s branch FROZEN'
+EMAIL_SUBJECT = "gdb-%(release.branch-version)s branch FROZEN"
 
 EMAIL_BODY = """
 Hello everyone,
@@ -26,12 +26,14 @@ Thank you,
 class AI(AbstractReleaseCreationAI):
     @property
     def name(self):
-        return 'freeze branch'
+        return "freeze branch"
 
     def do_AI(self):
-        email = Email(email_from='%s <%s>' % (self.cfg['rel_manager.name'],
-                                              self.cfg['rel_manager.email']),
-                      email_to=self.cfg['gdb_repo.email.patches'],
-                      email_subject=EMAIL_SUBJECT % self.cfg,
-                      email_body=EMAIL_BODY % self.cfg)
+        email = Email(
+            email_from="%s <%s>"
+            % (self.cfg["rel_manager.name"], self.cfg["rel_manager.email"]),
+            email_to=self.cfg["gdb_repo.email.patches"],
+            email_subject=EMAIL_SUBJECT % self.cfg,
+            email_body=EMAIL_BODY % self.cfg,
+        )
         email.send_after_confirmation()

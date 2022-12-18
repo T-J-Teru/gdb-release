@@ -40,7 +40,7 @@ Update the NEWS file if necessary:
 class AI(AbstractReleaseCreationAI):
     @property
     def name(self):
-        return 'update gdb/NEWS'
+        return "update gdb/NEWS"
 
     def do_AI(self):
         query(QUERY_BLURB % self.cfg)

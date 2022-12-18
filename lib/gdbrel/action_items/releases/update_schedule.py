@@ -22,10 +22,9 @@ ${no_hl}\
 class AI(AbstractReleaseCreationAI):
     @property
     def name(self):
-        return 'update schedule web page'
+        return "update schedule web page"
 
     def do_AI(self):
-        official_release_blurb = ('' if self.is_pre_release()
-                                  else OFFICIAL_RELEASE_BLURB)
-        subst = {'official_release_blurb': official_release_blurb}
+        official_release_blurb = "" if self.is_pre_release() else OFFICIAL_RELEASE_BLURB
+        subst = {"official_release_blurb": official_release_blurb}
         query(QUERY_BLURB % subst)

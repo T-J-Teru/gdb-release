@@ -6,13 +6,16 @@ import yaml
 
 class Checklist(object):
     def __init__(self, cfg):
-        self.checklist_dir = cfg['setup.checklists_dir']
-        self.filename = ('%s/gdb-%s.yaml'
-                         % (self.checklist_dir,
-                            cfg['release.branch-version']))
+        self.checklist_dir = cfg["setup.checklists_dir"]
+        self.filename = "%s/gdb-%s.yaml" % (
+            self.checklist_dir,
+            cfg["release.branch-version"],
+        )
         if not os.path.isdir(self.checklist_dir):
-            info('GDB checklists dir does not exist; creating...',
-                 '(%s)' % self.checklist_dir)
+            info(
+                "GDB checklists dir does not exist; creating...",
+                "(%s)" % self.checklist_dir,
+            )
             os.makedirs(self.checklist_dir)
         self.info = []
         if os.path.exists(self.filename):
@@ -27,8 +30,7 @@ class Checklist(object):
 
         for cat_info in self.info:
             if category in cat_info:
-                return (cat_info[category]
-                        and action_item in cat_info[category])
+                return cat_info[category] and action_item in cat_info[category]
         return False
 
     def set_done(self, category, action_item):
@@ -47,5 +49,5 @@ class Checklist(object):
         self.write()
 
     def write(self):
-        with open(self.filename, 'w') as f:
+        with open(self.filename, "w") as f:
             yaml.dump(self.info, f, default_flow_style=False)

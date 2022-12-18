@@ -37,11 +37,11 @@ ${no_hl}\
 class AI(AbstractReleaseCreationAI):
     @property
     def name(self):
-        return 'update the online documentation'
+        return "update the online documentation"
 
     def do_AI(self):
         if self.is_pre_release():
-            info_skipped('This is a pre-release, skipping...')
+            info_skipped("This is a pre-release, skipping...")
             return
 
         query(QUERY_BLURB % self.cfg)

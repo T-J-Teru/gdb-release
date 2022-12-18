@@ -36,15 +36,17 @@ Please confirm the following email to be sent:
 class AI(AbstractBranchCreationAI):
     @property
     def name(self):
-        return 'new branch email announcement'
+        return "new branch email announcement"
 
     def do_AI(self):
         email_subject = EMAIL_SUBJECT % self.cfg
         email_body = EMAIL_BODY % self.cfg
-        email = Email(email_from='%s <%s>' % (self.cfg['rel_manager.name'],
-                                              self.cfg['rel_manager.email']),
-                      email_to=self.cfg['gdb_repo.email.announce'],
-                      email_subject=email_subject,
-                      email_body=email_body)
+        email = Email(
+            email_from="%s <%s>"
+            % (self.cfg["rel_manager.name"], self.cfg["rel_manager.email"]),
+            email_to=self.cfg["gdb_repo.email.announce"],
+            email_subject=email_subject,
+            email_body=email_body,
+        )
 
         email.send_after_confirmation()

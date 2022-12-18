@@ -2,8 +2,16 @@ from gdbrel.errors import FatalError
 from subprocess import call, STDOUT
 
 
-def run(title, cmd, stdin=None, stdout=None, stderr=STDOUT,
-        cwd=None, env=None, must_succeed=True):
+def run(
+    title,
+    cmd,
+    stdin=None,
+    stdout=None,
+    stderr=STDOUT,
+    cwd=None,
+    env=None,
+    must_succeed=True,
+):
     """A wrapper around subprocess.call.
 
     Returns the command's return code.
@@ -21,19 +29,17 @@ def run(title, cmd, stdin=None, stdout=None, stderr=STDOUT,
     out_filename = None
     if isinstance(stdout, str):
         out_filename = stdout
-        stdout = open(out_filename, 'w')
+        stdout = open(out_filename, "w")
 
-    status = call(cmd, stdin=stdin, stdout=stdout, stderr=stderr,
-                  cwd=cwd, env=env)
+    status = call(cmd, stdin=stdin, stdout=stdout, stderr=stderr, cwd=cwd, env=env)
 
     if out_filename is not None:
         stdout.close()
 
     if must_succeed and status != 0:
-        err_msg = 'Failed to %s (error code: %d)' % (title, status)
+        err_msg = "Failed to %s (error code: %d)" % (title, status)
         if out_filename is not None:
-            err_msg += ('\nSee ${hl_sbu}%s${hl_ebu} for more details.'
-                        % out_filename)
+            err_msg += "\nSee ${hl_sbu}%s${hl_ebu} for more details." % out_filename
         raise FatalError(err_msg)
 
     return status

@@ -23,7 +23,7 @@ Skipping tag creation, This is only a pre-release\
 class AI(AbstractReleaseCreationAI):
     @property
     def name(self):
-        return 'push release tag'
+        return "push release tag"
 
     def do_AI(self):
         if self.is_pre_release():
@@ -33,12 +33,14 @@ class AI(AbstractReleaseCreationAI):
         # Let's be extra paranoid and ask the user to double-check
         # the tag one more time before pushing it (the --stat is there
         # to avoid the "diff")
-        tag_name = self.cfg['release.tag']
+        tag_name = self.cfg["release.tag"]
         tag_info = self.git.show(tag_name, stat=True, color=True)
-        subst = {'tag_name': tag_name,
-                 'tag_info': indent(tag_info, '| '),
-                 }
+        subst = {
+            "tag_name": tag_name,
+            "tag_info": indent(tag_info, "| "),
+        }
         query(VERIFY_TAG_QUERY % subst)
-        trace('Pushing new tag (${hl_sbu}%(tag_name)s${hl_ebu})'
-              ' to remote...' % subst)
-        self.git.push('origin', tag_name, _outfile=sys.stdout)
+        trace(
+            "Pushing new tag (${hl_sbu}%(tag_name)s${hl_ebu})" " to remote..." % subst
+        )
+        self.git.push("origin", tag_name, _outfile=sys.stdout)

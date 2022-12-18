@@ -12,23 +12,24 @@ import sys
 
 
 def parse_args(argv=None):
-    """Parse the command-line and return the arguments.
-    """
+    """Parse the command-line and return the arguments."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--html', action='store_true', default=False,
-                        help=('Dump the list of bugs in HTML format'))
-    parser.add_argument('version',
-                        help=('The GDB release version to look up'))
+    parser.add_argument(
+        "--html",
+        action="store_true",
+        default=False,
+        help=("Dump the list of bugs in HTML format"),
+    )
+    parser.add_argument("version", help=("The GDB release version to look up"))
     return parser.parse_args(argv)
 
 
 def main(argv=None):
-    """The main subprogram.
-    """
+    """The main subprogram."""
     args = parse_args(argv)
 
     ROOT_DIR = dirname(abspath(__file__))
-    LIB_DIR = '%s/%s' % (ROOT_DIR, 'lib')
+    LIB_DIR = "%s/%s" % (ROOT_DIR, "lib")
     sys.path.insert(0, LIB_DIR)
 
     from gdbrel.bugzilla import DumpFormat, dump_fixed_bugs
@@ -39,5 +40,5 @@ def main(argv=None):
     dump_fixed_bugs(cfg, args.version, fmt)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -14,7 +14,7 @@ If you do make a change, remember to send the patch to gdb-patches.
 class AI(AbstractBranchCreationAI):
     @property
     def name(self):
-        return 'double-check schedule on web'
+        return "double-check schedule on web"
 
     def do_AI(self):
         query(AI_BLURB)

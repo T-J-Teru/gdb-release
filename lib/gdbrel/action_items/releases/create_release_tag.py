@@ -53,7 +53,7 @@ Skipping tag creation, This is only a pre-release\
 class AI(AbstractReleaseCreationAI):
     @property
     def name(self):
-        return 'create release tag'
+        return "create release tag"
 
     def do_AI(self):
         if self.is_pre_release():
@@ -64,24 +64,24 @@ class AI(AbstractReleaseCreationAI):
         if self.sandbox.has_local_commits(self.release_branch):
             raise FatalError(UNPUSHED_CHANGES_ERROR % self.cfg)
 
-        commit_info = self.git.log('-n1', self.release_branch)
-        tag_name = self.cfg['release.tag']
-        subst = {'commit_info': indent(commit_info, '| '),
-                 'tag_name': tag_name,
-                 }
+        commit_info = self.git.log("-n1", self.release_branch)
+        tag_name = self.cfg["release.tag"]
+        subst = {
+            "commit_info": indent(commit_info, "| "),
+            "tag_name": tag_name,
+        }
 
         # Create the tag after having asked the user to confirm that
         # we are we are going to use the correct commit to create it.
         query(NEW_TAG_QUERY % subst)
-        trace('Creating new tag now (${hl_sbu}%(tag_name)s${hl_ebu})...'
-              % subst)
-        self.git.tag(tag_name, self.release_branch,
-                     sign=True,
-                     message=TAG_REV_LOG % self.cfg)
+        trace("Creating new tag now (${hl_sbu}%(tag_name)s${hl_ebu})..." % subst)
+        self.git.tag(
+            tag_name, self.release_branch, sign=True, message=TAG_REV_LOG % self.cfg
+        )
 
         # Now that the tag has been created, let's be extra paranoid
         # and ask the user to double-check the tag before continuing
         # further (the --stat is there to avoid the "diff")
         tag_info = self.git.show(tag_name, stat=True, color=True)
-        subst['tag_info'] = indent(tag_info, '| ')
+        subst["tag_info"] = indent(tag_info, "| ")
         query(VERIFY_TAG_QUERY % subst)

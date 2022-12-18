@@ -5,14 +5,15 @@ import sys
 
 # Various terminal sequences to enable certain colors.  The colors
 # are mapped to a given type of text.
-HL_MAP = {'hl_info': '\033[36m',    # Info messages (cyan)
-          'hl_q': '\033[32m',       # Questions/See-me (green)
-          'hl_warn': '\033[33m',    # Warning (yellow)
-          'hl_err': '\033[31m',     # Error (red)
-          'hl_sbu': '\033[1;4m',    # Start bold+underline
-          'hl_ebu': '\033[21;24m',  # End bold+underline
-          'no_hl': '\033[0m',       # End of highlighting.
-          }
+HL_MAP = {
+    "hl_info": "\033[36m",  # Info messages (cyan)
+    "hl_q": "\033[32m",  # Questions/See-me (green)
+    "hl_warn": "\033[33m",  # Warning (yellow)
+    "hl_err": "\033[31m",  # Error (red)
+    "hl_sbu": "\033[1;4m",  # Start bold+underline
+    "hl_ebu": "\033[21;24m",  # End bold+underline
+    "no_hl": "\033[0m",  # End of highlighting.
+}
 
 
 def apply_highlighting(s):
@@ -21,14 +22,14 @@ def apply_highlighting(s):
 
 def hl_print(hl_type, s, out=sys.stdout, new_line=True):
     if hl_type is not None:
-        s = '${%s}%s${no_hl}' % (hl_type, s)
+        s = "${%s}%s${no_hl}" % (hl_type, s)
     out.write(apply_highlighting(s))
     if new_line:
-        out.write('\n')
+        out.write("\n")
     out.flush()
 
 
-def _inform(indent='', hl_type=None, *args):
+def _inform(indent="", hl_type=None, *args):
     assert len(args) > 0
     # Handle the case where a single multi-list string is passed.
     if len(args) == 1:
@@ -36,28 +37,28 @@ def _inform(indent='', hl_type=None, *args):
 
     hl_print(hl_type, indent + args[0])
     for arg in args[1:]:
-        print(' ' * len(indent) + apply_highlighting(arg))
+        print(" " * len(indent) + apply_highlighting(arg))
 
 
 def trace(*args):
-    _inform('--- ', None, *args)
+    _inform("--- ", None, *args)
 
 
 def info(*args):
-    _inform('+++ ', 'hl_info', *args)
+    _inform("+++ ", "hl_info", *args)
 
 
 def info_skipped(*args):
-    _inform('... ', 'hl_info', *args)
+    _inform("... ", "hl_info", *args)
 
 
 def query(*args):
-    _inform('!!! ', 'hl_q', *args)
+    _inform("!!! ", "hl_q", *args)
     press_enter_or_control_c()
 
 
 def warn(*args):
-    _inform('??? ', 'hl_warn', *args)
+    _inform("??? ", "hl_warn", *args)
     press_enter_or_control_c()
 
 
@@ -66,26 +67,28 @@ def error(*args):
     # Print a new-line, since we might not be at the start of a line...
     print()
     for arg in args:
-        hl_print('hl_err', '*** ' + arg)
+        hl_print("hl_err", "*** " + arg)
     sys.exit(1)
 
 
 def press_enter_or_control_c():
     try:
         hl_print(
-            'hl_q', '??? Press [Enter] to continue or [Ctrl-C] to abort:',
-            new_line=False)
+            "hl_q",
+            "??? Press [Enter] to continue or [Ctrl-C] to abort:",
+            new_line=False,
+        )
         sys.stdin.readline()
     except KeyboardInterrupt:
-        error('Aborting due to explicit keyboard interrupt (Ctrl-c)')
+        error("Aborting due to explicit keyboard interrupt (Ctrl-c)")
 
 
 def indent(s, indenter):
-    return '\n'.join([indenter + line for line in s.splitlines()])
+    return "\n".join([indenter + line for line in s.splitlines()])
 
 
 def get_changelog_entries(rev_log):
-    cl_prog = re.compile(r'(\S*\bChangeLog):\S*$', re.IGNORECASE)
+    cl_prog = re.compile(r"(\S*\bChangeLog):\S*$", re.IGNORECASE)
     result = {}
     current_cl_text = None
     for line in rev_log.splitlines():
@@ -120,7 +123,7 @@ def is_pre_release(version_str):
     to be .50 - that gives us 49 releases before we have to fix this
     function...
     """
-    version_info = version_str.split('.')
+    version_info = version_str.split(".")
     if len(version_info) < 3:
         # No micro version number, definitely a real release...
         return False

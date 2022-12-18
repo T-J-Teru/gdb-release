@@ -7,7 +7,7 @@ import sys
 
 def main():
     ROOT_DIR = dirname(abspath(__file__))
-    LIB_DIR = '%s/%s' % (ROOT_DIR, 'lib')
+    LIB_DIR = "%s/%s" % (ROOT_DIR, "lib")
     sys.path.insert(0, LIB_DIR)
 
     # This variable gets set if an error gets detected, and is then
@@ -23,10 +23,12 @@ def main():
     except FatalError as e:
         err_msg = str(e)
     except CalledProcessError as e:
-        err_msg = "\n".join([
-            f"The following command returned nonzero ({e.returncode}):",
-            f"$ {e.cmd}",
-        ])
+        err_msg = "\n".join(
+            [
+                f"The following command returned nonzero ({e.returncode}):",
+                f"$ {e.cmd}",
+            ]
+        )
         if e.output is not None:
             err_msg += f"\n{e.output}"
         else:
@@ -37,5 +39,5 @@ def main():
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

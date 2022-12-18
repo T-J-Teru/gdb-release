@@ -5,7 +5,7 @@ import re
 
 
 class FlatYaml(object):
-    VAR_MATCHER = re.compile(r'\${([^}]+)}')
+    VAR_MATCHER = re.compile(r"\${([^}]+)}")
 
     def __init__(self, yaml_filename, env):
         self.yaml_filename = yaml_filename
@@ -28,7 +28,8 @@ class FlatYaml(object):
     def __resolve(self, key):
         if key not in self.flattened.keys():
             raise FatalError(
-                'Invalid variable name in %s: %s' % (self.yaml_filename, key))
+                "Invalid variable name in %s: %s" % (self.yaml_filename, key)
+            )
 
         while True:
             value = self.flattened[key]
@@ -38,13 +39,13 @@ class FlatYaml(object):
 
             sub_var_name = m.group(1)
             self.__resolve(sub_var_name)
-            self.flattened[key] = (value[:m.start()]
-                                   + self.flattened[sub_var_name]
-                                   + value[m.end():])
+            self.flattened[key] = (
+                value[: m.start()] + self.flattened[sub_var_name] + value[m.end() :]
+            )
 
     def __tree_name(self, parent_tree_name, subtree_name):
         if parent_tree_name is None:
-            prefix = ''
+            prefix = ""
         else:
-            prefix = '%s.' % parent_tree_name
+            prefix = "%s." % parent_tree_name
         return prefix + subtree_name

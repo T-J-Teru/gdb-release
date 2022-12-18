@@ -42,20 +42,20 @@ def git_run(command, *args, **kwargs):
            _cwd=<str>: Directory name from which to run the command.
            _split_lines: Return an array with one string per returned line
     """
-    to_run = ['git', command.replace("_", "-")]
+    to_run = ["git", command.replace("_", "-")]
 
     input = None
     outfile = None
     do_split_lines = False
     cwd = None
     for (k, v) in kwargs.items():
-        if k == '_input':
+        if k == "_input":
             input = v
-        elif k == '_outfile':
+        elif k == "_outfile":
             outfile = v
-        elif k == '_cwd':
+        elif k == "_cwd":
             cwd = v
-        elif k == '_split_lines':
+        elif k == "_split_lines":
             do_split_lines = True
         elif v is True:
             if len(k) == 1:
@@ -73,17 +73,16 @@ def git_run(command, *args, **kwargs):
     stdout = outfile if outfile else PIPE
     stdin = None if input is None else PIPE
 
-    process = Popen(to_run, stdout=stdout, stderr=STDOUT, stdin=stdin,
-                    cwd=cwd, text=True)
+    process = Popen(
+        to_run, stdout=stdout, stderr=STDOUT, stdin=stdin, cwd=cwd, text=True
+    )
     output, error = process.communicate(input)
     # We redirected stderr to the same fd as stdout, so error should
     # not contain anything.
     assert not error
 
     if process.returncode != 0:
-        raise CalledProcessError(process.returncode,
-                                 " ".join(to_run),
-                                 output)
+        raise CalledProcessError(process.returncode, " ".join(to_run), output)
 
     if outfile:
         return None
@@ -101,6 +100,7 @@ class Git:
     case the output is redirected to that file (if the file is already
     present, it is overwritten).
     """
+
     def __init__(self, sandbox_dir=None):
         self.sandbox_dir = sandbox_dir
 
@@ -110,14 +110,14 @@ class Git:
                 # If a string _outfile parameter was given, turn it
                 # into a file descriptor.
                 tmp_fd = None
-                if (('_outfile' in kwargs
-                     and isinstance(kwargs['_outfile'], str))):
-                    tmp_fd = open(kwargs['_outfile'], 'w')
-                    kwargs['_outfile'] = tmp_fd
-                if '_cwd' not in kwargs:
-                    kwargs['_cwd'] = self.sandbox_dir
+                if "_outfile" in kwargs and isinstance(kwargs["_outfile"], str):
+                    tmp_fd = open(kwargs["_outfile"], "w")
+                    kwargs["_outfile"] = tmp_fd
+                if "_cwd" not in kwargs:
+                    kwargs["_cwd"] = self.sandbox_dir
                 return git_run(command, *args, **kwargs)
             finally:
                 if tmp_fd is not None:
                     tmp_fd.close()
+
         return f

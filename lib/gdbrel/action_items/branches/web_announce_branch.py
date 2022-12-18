@@ -32,7 +32,7 @@ Please post the creation of the branch on the website:
 class AI(AbstractBranchCreationAI):
     @property
     def name(self):
-        return 'new branch web announcement'
+        return "new branch web announcement"
 
     def do_AI(self):
         query(AI_BLURB)

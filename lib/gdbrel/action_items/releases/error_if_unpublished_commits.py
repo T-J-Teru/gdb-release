@@ -12,19 +12,24 @@ The following commits have not been pushed:
 class AI(AbstractAction):
     @property
     def name(self):
-        return 'check all local commits have been published'
+        return "check all local commits have been published"
 
     def do_AI(self):
         self.__check_branch(self.release_branch)
         self.__check_branch(self.head_branch)
 
     def __check_branch(self, branch_name):
-        trace('Checking %s...' % branch_name)
-        unpushed = self.git.log('origin/%(branch)s..%(branch)s'
-                                % {'branch': branch_name},
-                                oneline=True, color=True)
+        trace("Checking %s..." % branch_name)
+        unpushed = self.git.log(
+            "origin/%(branch)s..%(branch)s" % {"branch": branch_name},
+            oneline=True,
+            color=True,
+        )
         if unpushed:
-            raise FatalError(INTERNAL_ERROR_MSG
-                             % {'branch_name': branch_name,
-                                'commit_list': unpushed,
-                                })
+            raise FatalError(
+                INTERNAL_ERROR_MSG
+                % {
+                    "branch_name": branch_name,
+                    "commit_list": unpushed,
+                }
+            )

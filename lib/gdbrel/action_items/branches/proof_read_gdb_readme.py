@@ -21,7 +21,7 @@ Please proof-read the gdb/README file:
 class AI(AbstractBranchCreationAI):
     @property
     def name(self):
-        return 'gdb/README proofing'
+        return "gdb/README proofing"
 
     def do_AI(self):
         query(AI_BLURB)

@@ -12,7 +12,7 @@ Thank the GDB developers for their patience :-)
 class AI(AbstractReleaseCreationAI):
     @property
     def name(self):
-        return 'unfreeze branch'
+        return "unfreeze branch"
 
     def do_AI(self):
         query(QUERY_BLURB)

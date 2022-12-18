@@ -50,16 +50,17 @@ FYI/HEAD: Patches applied to branch %(gdb_repo.head_branch)s"""
 class AI(AbstractAction):
     @property
     def name(self):
-        return 'publish all commits'
+        return "publish all commits"
 
     def do_AI(self):
         for (branch_name, email_subject) in (
-                (self.release_branch, BRANCH_SUBJECT),
-                (self.head_branch, MASTER_SUBJECT)):
+            (self.release_branch, BRANCH_SUBJECT),
+            (self.head_branch, MASTER_SUBJECT),
+        ):
             self.__publish_for_branch(branch_name, email_subject % self.cfg)
 
     def __publish_for_branch(self, branch_name, subject):
-        subst = {'branch': branch_name}
+        subst = {"branch": branch_name}
 
         if not self.sandbox.has_local_commits(branch_name):
             warn(NO_CHANGE_WARNING % subst)
@@ -68,4 +69,4 @@ class AI(AbstractAction):
         query(INTRO % subst)
         self.email_changes(branch_name, subject)
         query(PUSH_QUERY % subst)
-        self.git.push('origin', branch_name, _outfile=sys.stdout)
+        self.git.push("origin", branch_name, _outfile=sys.stdout)

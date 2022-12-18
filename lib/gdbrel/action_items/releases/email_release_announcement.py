@@ -40,31 +40,39 @@ RELEASE_BODY = """\
 class AI(AbstractReleaseCreationAI):
     @property
     def name(self):
-        return 'email release announcement'
+        return "email release announcement"
 
     def do_AI(self):
         if self.is_pre_release():
-            email_to = self.cfg['gdb_repo.email.patches']
+            email_to = self.cfg["gdb_repo.email.patches"]
             email_subject = PRE_RELEASE_SUBJECT % self.cfg
             email_body = PRE_RELEASE_BODY % self.cfg
         else:
-            subst = {'announcement': self.__get_announcement(),
-                     'rel_manager.name': self.cfg['rel_manager.name'],
-                     }
+            subst = {
+                "announcement": self.__get_announcement(),
+                "rel_manager.name": self.cfg["rel_manager.name"],
+            }
             # Add ANNOUNCE from htdocs to subst.
-            email_to = ', '.join([self.cfg['gdb_repo.email.announce'],
-                                  self.cfg['gdb_repo.email.info-gnu']])
+            email_to = ", ".join(
+                [
+                    self.cfg["gdb_repo.email.announce"],
+                    self.cfg["gdb_repo.email.info-gnu"],
+                ]
+            )
             email_subject = RELEASE_SUBJECT % self.cfg
             email_body = RELEASE_BODY % subst
 
-        email = Email(email_from='%s <%s>' % (self.cfg['rel_manager.name'],
-                                              self.cfg['rel_manager.email']),
-                      email_to=email_to,
-                      email_subject=email_subject,
-                      email_body=email_body)
+        email = Email(
+            email_from="%s <%s>"
+            % (self.cfg["rel_manager.name"], self.cfg["rel_manager.email"]),
+            email_to=email_to,
+            email_subject=email_subject,
+            email_body=email_body,
+        )
         email.send_after_confirmation()
 
     def __get_announcement(self):
-        with open(os.path.join(self.cfg['setup.htdocs_sandbox'],
-                               'download/ANNOUNCEMENT')) as f:
+        with open(
+            os.path.join(self.cfg["setup.htdocs_sandbox"], "download/ANNOUNCEMENT")
+        ) as f:
             return f.read().rstrip()

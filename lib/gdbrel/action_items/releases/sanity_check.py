@@ -32,7 +32,7 @@ and installed the debugger, so all that is left to do is:
 class AI(AbstractReleaseCreationAI):
     @property
     def name(self):
-        return 'sanity check'
+        return "sanity check"
 
     def do_AI(self):
         # First, do as much of the sanity check as possible.
@@ -46,12 +46,13 @@ class AI(AbstractReleaseCreationAI):
 
     @property
     def __gdb_unpacked_dir(self):
-        return os.path.join(self.cfg['setup.tmp_dir'],
-                            'gdb-{}'.format(self.cfg.release_version))
+        return os.path.join(
+            self.cfg["setup.tmp_dir"], "gdb-{}".format(self.cfg.release_version)
+        )
 
     @property
     def __gdb_src_dir(self):
-        return self.__gdb_unpacked_dir + '-src'
+        return self.__gdb_unpacked_dir + "-src"
 
     @property
     def __gdb_bld_dir(self):
@@ -60,19 +61,24 @@ class AI(AbstractReleaseCreationAI):
     def __unpack_tarball(self):
         # If there are any directories with the same directory names
         # that we might be using, delete them now...
-        for dir_name in (self.__gdb_unpacked_dir,
-                         self.__gdb_src_dir,
-                         self.__gdb_bld_dir):
+        for dir_name in (
+            self.__gdb_unpacked_dir,
+            self.__gdb_src_dir,
+            self.__gdb_bld_dir,
+        ):
             if os.path.exists(dir_name):
                 shutil.rmtree(dir_name)
 
-        tmp_dir = self.cfg['setup.tmp_dir']
-        tar_out = os.path.join(tmp_dir, 'untar.out')
-        xz_tarball = self.cfg['release.xz_tarball']
-        trace('unpacking %(release.xz_tarball)s...' % self.cfg)
-        run('unpack %s' % xz_tarball,
-            ['tar', 'xfJ', xz_tarball],
-            cwd=tmp_dir, stdout=tar_out)
+        tmp_dir = self.cfg["setup.tmp_dir"]
+        tar_out = os.path.join(tmp_dir, "untar.out")
+        xz_tarball = self.cfg["release.xz_tarball"]
+        trace("unpacking %(release.xz_tarball)s..." % self.cfg)
+        run(
+            "unpack %s" % xz_tarball,
+            ["tar", "xfJ", xz_tarball],
+            cwd=tmp_dir,
+            stdout=tar_out,
+        )
 
         # Now, rename the unpacked directory into the src directory,
         # and create the build directory...
@@ -80,28 +86,35 @@ class AI(AbstractReleaseCreationAI):
         os.mkdir(self.__gdb_bld_dir)
 
     def __configure_gdb(self):
-        tmp_dir = self.cfg['setup.tmp_dir']
-        prefix = os.path.join(self.__gdb_bld_dir, 'install')
-        configure_out = os.path.join(tmp_dir, 'configure.out')
-        trace('configuring GDB...',
-              'tip: tail -f %s' % configure_out)
-        run('configure GDB',
-            [os.path.join(self.__gdb_src_dir, 'configure'),
-             '--prefix=%s' % prefix, 'CFLAGS=-g', 'CXXFLAGS=-g'],
-            cwd=self.__gdb_bld_dir, stdout=configure_out)
+        tmp_dir = self.cfg["setup.tmp_dir"]
+        prefix = os.path.join(self.__gdb_bld_dir, "install")
+        configure_out = os.path.join(tmp_dir, "configure.out")
+        trace("configuring GDB...", "tip: tail -f %s" % configure_out)
+        run(
+            "configure GDB",
+            [
+                os.path.join(self.__gdb_src_dir, "configure"),
+                "--prefix=%s" % prefix,
+                "CFLAGS=-g",
+                "CXXFLAGS=-g",
+            ],
+            cwd=self.__gdb_bld_dir,
+            stdout=configure_out,
+        )
 
     def __build_gdb(self):
-        tmp_dir = self.cfg['setup.tmp_dir']
-        build_out = os.path.join(tmp_dir, 'build.out')
-        trace('building GDB...',
-              'tip: tail -f %s' % build_out)
-        run('build GDB', ['make', '-j6'],
-            cwd=self.__gdb_bld_dir, stdout=build_out)
+        tmp_dir = self.cfg["setup.tmp_dir"]
+        build_out = os.path.join(tmp_dir, "build.out")
+        trace("building GDB...", "tip: tail -f %s" % build_out)
+        run("build GDB", ["make", "-j6"], cwd=self.__gdb_bld_dir, stdout=build_out)
 
     def __install_gdb(self):
-        tmp_dir = self.cfg['setup.tmp_dir']
-        install_out = os.path.join(tmp_dir, 'install.out')
-        trace('installing GDB...',
-              'tip: tail -f %s' % install_out)
-        run('install GDB', ['make', '-C', 'gdb', 'install'],
-            cwd=self.__gdb_bld_dir, stdout=install_out)
+        tmp_dir = self.cfg["setup.tmp_dir"]
+        install_out = os.path.join(tmp_dir, "install.out")
+        trace("installing GDB...", "tip: tail -f %s" % install_out)
+        run(
+            "install GDB",
+            ["make", "-C", "gdb", "install"],
+            cwd=self.__gdb_bld_dir,
+            stdout=install_out,
+        )

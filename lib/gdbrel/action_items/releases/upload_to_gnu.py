@@ -39,50 +39,60 @@ the following actions:
 class AI(AbstractReleaseCreationAI):
     @property
     def name(self):
-        return 'upload tarballs to gnu.org'
+        return "upload tarballs to gnu.org"
 
     def do_AI(self):
         if self.is_pre_release():
-            info_skipped('${hl_sbu}NOT${hl_ebu} uploading tarballs to'
-                         ' the gnu.org FTP site',
-                         '(only full releases get uploaded there)')
+            info_skipped(
+                "${hl_sbu}NOT${hl_ebu} uploading tarballs to" " the gnu.org FTP site",
+                "(only full releases get uploaded there)",
+            )
             return
 
-        for tarball_ext in ('.xz', '.gz'):
+        for tarball_ext in (".xz", ".gz"):
             self.__create_updload_files(tarball_ext)
         self.__upload_tarballs()
 
     def __create_updload_files(self, tarball_ext):
         tarball = self.cfg.release_tarball + tarball_ext
-        signed_tarball = tarball + '.sig'
-        directive_filename = tarball + '.directive'
-        signed_directive = directive_filename + '.asc'
-        tmp_dir = self.cfg['setup.tmp_dir']
+        signed_tarball = tarball + ".sig"
+        directive_filename = tarball + ".directive"
+        signed_directive = directive_filename + ".asc"
+        tmp_dir = self.cfg["setup.tmp_dir"]
 
         # First, sign the tarball.
-        info('Signing %s (into: ${hl_sbu}%s${hl_ebu})'
-             % (tarball, signed_tarball))
-        status = call(['gpg', '-b', os.path.join(tmp_dir, tarball)],
-                      stdin=sys.stdin, stdout=sys.stdout, stderr=STDOUT)
+        info("Signing %s (into: ${hl_sbu}%s${hl_ebu})" % (tarball, signed_tarball))
+        status = call(
+            ["gpg", "-b", os.path.join(tmp_dir, tarball)],
+            stdin=sys.stdin,
+            stdout=sys.stdout,
+            stderr=STDOUT,
+        )
         if status != 0:
-            raise FatalError('Signing of %s failed, aborting.' % tarball)
+            raise FatalError("Signing of %s failed, aborting." % tarball)
 
         # Next, create a directive file...
-        info('Creating the directive file (${hl_sbu}%s${hl_ebu})...'
-             % directive_filename)
-        with open(os.path.join(tmp_dir, directive_filename), 'w') as f:
-            f.write(DIRECTIVE_FILE % {'tarball': tarball})
+        info(
+            "Creating the directive file (${hl_sbu}%s${hl_ebu})..." % directive_filename
+        )
+        with open(os.path.join(tmp_dir, directive_filename), "w") as f:
+            f.write(DIRECTIVE_FILE % {"tarball": tarball})
 
         # And now, clear-sign it...
-        info('Clear-signing the directive file'
-             ' (into: ${hl_sbu}%s${hl_ebu})...'
-             % signed_directive)
-        status = call(['gpg', '--clearsign',
-                       os.path.join(tmp_dir, directive_filename)],
-                      stdin=sys.stdin, stdout=sys.stdout, stderr=STDOUT)
+        info(
+            "Clear-signing the directive file"
+            " (into: ${hl_sbu}%s${hl_ebu})..." % signed_directive
+        )
+        status = call(
+            ["gpg", "--clearsign", os.path.join(tmp_dir, directive_filename)],
+            stdin=sys.stdin,
+            stdout=sys.stdout,
+            stderr=STDOUT,
+        )
         if status != 0:
-            raise FatalError('Clear-signing of %s faileed, aborting.'
-                             % directive_filename)
+            raise FatalError(
+                "Clear-signing of %s faileed, aborting." % directive_filename
+            )
 
     def __upload_tarballs(self):
         query(UPLOAD_INSNS % self.cfg)

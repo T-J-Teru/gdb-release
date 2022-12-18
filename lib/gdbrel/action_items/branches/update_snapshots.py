@@ -17,8 +17,8 @@ Please update the snaphot building process to use the new branch:
 class AI(AbstractBranchCreationAI):
     @property
     def name(self):
-        return 'update nightly snapshots setup'
+        return "update nightly snapshots setup"
 
     def do_AI(self):
-        blurb = AI_BLURB % {'branch_name': self.release_branch}
+        blurb = AI_BLURB % {"branch_name": self.release_branch}
         query(blurb)

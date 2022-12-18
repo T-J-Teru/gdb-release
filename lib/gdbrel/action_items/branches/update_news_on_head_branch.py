@@ -47,19 +47,21 @@ process.
 class AI(AbstractBranchCreationAI):
     @property
     def name(self):
-        return 'NEWS update on head branch'
+        return "NEWS update on head branch"
 
     def do_AI(self):
-        NEWS_FILENAME = 'gdb/NEWS'
-        subst_info = {'filename': NEWS_FILENAME,
-                      'branch_name': self.release_branch,
-                      'branch_version': self.cfg['release.branch-version'],
-                      'sandbox_dir': self.sandbox.path,
-                      }
+        NEWS_FILENAME = "gdb/NEWS"
+        subst_info = {
+            "filename": NEWS_FILENAME,
+            "branch_name": self.release_branch,
+            "branch_version": self.cfg["release.branch-version"],
+            "sandbox_dir": self.sandbox.path,
+        }
 
-        trace('Updating %(filename)s in branch ${hl_sbu}'
-              '%(branch_name)s${hl_ebu}...'
-              % subst_info)
+        trace(
+            "Updating %(filename)s in branch ${hl_sbu}"
+            "%(branch_name)s${hl_ebu}..." % subst_info
+        )
 
         self.sandbox.checkout(self.head_branch)
 
@@ -70,9 +72,9 @@ class AI(AbstractBranchCreationAI):
         # how to handle the situation by hand.
         with self.sandbox.open(NEWS_FILENAME) as f:
             old = f.readlines()
-        with self.sandbox.open(NEWS_FILENAME, 'w') as f:
+        with self.sandbox.open(NEWS_FILENAME, "w") as f:
             for old_line in old:
-                if old_line.startswith('*** Changes since GDB'):
+                if old_line.startswith("*** Changes since GDB"):
                     f.write(NEW_NEWS_SECTION % subst_info)
                 else:
                     f.write(old_line)
@@ -80,5 +82,4 @@ class AI(AbstractBranchCreationAI):
         # Commit the change.
         rev_log = NEWS_COMMIT_REV_LOG % subst_info
         review_insns = NEWS_COMMIT_REVIEW_INSNS % subst_info
-        self.commit(self.head_branch, NEWS_FILENAME, rev_log,
-                    review_insns)
+        self.commit(self.head_branch, NEWS_FILENAME, rev_log, review_insns)

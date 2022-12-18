@@ -22,27 +22,33 @@ COMMIT_INFO_FORMAT = """\
 class AI(AbstractBranchCreationAI):
     @property
     def name(self):
-        return 'branch creation'
+        return "branch creation"
 
     def do_AI(self):
         # Ask confirmation that we're branching on the right commit.
-        commit_info = self.git.show(self.cfg['release.branchpoint'],
-                                    pretty='format:' + COMMIT_INFO_FORMAT,
-                                    quiet=True)
-        query(BLURB % {'branch_name': self.release_branch,
-                       'sha1': self.cfg['release.branchpoint'],
-                       'commit_info': commit_info})
+        commit_info = self.git.show(
+            self.cfg["release.branchpoint"],
+            pretty="format:" + COMMIT_INFO_FORMAT,
+            quiet=True,
+        )
+        query(
+            BLURB
+            % {
+                "branch_name": self.release_branch,
+                "sha1": self.cfg["release.branchpoint"],
+                "commit_info": commit_info,
+            }
+        )
 
         # Create the branch...
-        self.sandbox.branch(self.release_branch,
-                            self.cfg['release.branchpoint'])
+        self.sandbox.branch(self.release_branch, self.cfg["release.branchpoint"])
 
         # Then push it to the remote... Add the --set-upstream switch,
         # which enables some convenient features in git.
-        trace('pushing the new branch to the remote...')
-        self.git.push('origin', self.release_branch,
-                      set_upstream=True,
-                      _outfile=sys.stdout)
+        trace("pushing the new branch to the remote...")
+        self.git.push(
+            "origin", self.release_branch, set_upstream=True, _outfile=sys.stdout
+        )
 
         # At this point, we are done for this AI.  We don't need to
         # send an email about the branch, since one will be sent later

@@ -51,12 +51,11 @@ Please post the creation of the release on the website:
 class AI(AbstractReleaseCreationAI):
     @property
     def name(self):
-        return 'announce release on web'
+        return "announce release on web"
 
     def do_AI(self):
         if self.is_pre_release():
-            info_skipped('This is a pre-release, skipping...')
+            info_skipped("This is a pre-release, skipping...")
             return
 
-        query(Template(QUERY_BLURB).safe_substitute(
-            tag=self.cfg['release.tag']))
+        query(Template(QUERY_BLURB).safe_substitute(tag=self.cfg["release.tag"]))
