@@ -44,13 +44,13 @@ def git_run(command, *args, **kwargs):
     """
     to_run = ["git", command.replace("_", "-")]
 
-    input = None
+    infile = None
     outfile = None
     do_split_lines = False
     cwd = None
     for (k, v) in kwargs.items():
         if k == "_input":
-            input = v
+            infile = v
         elif k == "_outfile":
             outfile = v
         elif k == "_cwd":
@@ -71,12 +71,12 @@ def git_run(command, *args, **kwargs):
     to_run.extend(args)
 
     stdout = outfile if outfile else PIPE
-    stdin = None if input is None else PIPE
+    stdin = None if infile is None else PIPE
 
     process = Popen(
         to_run, stdout=stdout, stderr=STDOUT, stdin=stdin, cwd=cwd, text=True
     )
-    output, error = process.communicate(input)
+    output, error = process.communicate(infile)
     # We redirected stderr to the same fd as stdout, so error should
     # not contain anything.
     assert not error
