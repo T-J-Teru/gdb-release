@@ -13,7 +13,7 @@ Hello,
 I have just finished creating the gdb-%(release.do_release)s pre-release.
 It is available for download at the following location:
 
-    ftp://%(sourceware.hostname)s/%(sourceware.ftp.branch_public_dir)s\
+    https://%(sourceware.hostname)s/%(sourceware.ftp.branch_public_dir)s\
 /%(release.xz_tarball)s
 
 A gzip'ed version is also available: %(release.gzip_tarball)s.

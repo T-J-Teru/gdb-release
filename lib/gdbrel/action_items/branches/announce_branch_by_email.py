@@ -11,7 +11,7 @@ branch has just been created.
 
 The prerelease snapshots will be available at:
 
-    ftp://%(sourceware.hostname)s/%(sourceware.ftp.branch_public_dir)s/\
+    https://%(sourceware.hostname)s/%(sourceware.ftp.branch_public_dir)s/\
 gdb.tar.xz
 
 The sources are also accessible via GIT:
