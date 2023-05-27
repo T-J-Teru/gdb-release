@@ -17,6 +17,7 @@ gdb-13-branch:
     branch-version: !!str 13
     do_release: !!str 13.0.91
     do_release: !!str 13.1
+    do_release: !!str 13.2
 
 gdb-12-branch:
     # Branchpoint date: Sun Mar 20 09:37:13 2022 +0800
