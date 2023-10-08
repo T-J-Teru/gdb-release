@@ -16,7 +16,7 @@ UPLOAD_INSNS = """\
 Upload the tarballs on the gnu.org FTP server:
 
 The general procedure for uploading files to ftp.gnu.org is described at:
-http://www.gnu.org/prep/maintain/maintain.html#Automated-Upload-Procedure
+https://www.gnu.org/prep/maintain/maintain.html#Automated-Upload-Procedure
 
 More specifically, to upload this release, you will need to do
 the following actions:

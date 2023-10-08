@@ -24,7 +24,7 @@ NEW_FTP_README = """\
 
            GDB %(release.do_release)s, Released %(today_utc)s
 
-See the GDB home page http://www.gnu.org/software/gdb/
+See the GDB home page https://www.gnu.org/software/gdb/
 for more information about GDB.
 
         gdb-%(release.do_release)s.tar.xz                  %(xz_size)sMiB

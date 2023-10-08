@@ -4,7 +4,7 @@ from gdbrel.utils import query
 QUERY_BLURB = """\
 Please visit the following URL and confirm the schedule:
 
-        ${hl_sbu}http://www.sourceware.org/gdb/schedule/${hl_ebu}
+        ${hl_sbu}https://www.sourceware.org/gdb/schedule/${hl_ebu}
 
 %(official_release_blurb)s
 

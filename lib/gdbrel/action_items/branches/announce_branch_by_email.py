@@ -21,7 +21,7 @@ The sources are also accessible via GIT:
 
 This announcement has also been posted on the GDB web site at:
 
-    http://www.sourceware.org/gdb/
+    https://www.sourceware.org/gdb/
 
 """
 
