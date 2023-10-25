@@ -15,6 +15,12 @@ gdb-14-branch:
     # Branchpoint date: Sun Oct 08 09:48:00 2023 +0200
     branchpoint: 8f12a1a841cd0c447de7a5a0f134a0efece73588
     branch-version: !!str 14
+    # WARNING WARNING WARNING:
+    # ------------------------
+    # The first pre-release version number should have been a .90.
+    # I copy/pasted the scheme from the gdb-13-branch below, but
+    # that was a special case, where we created the branch, and then
+    # waited for some changes before cutting the first pre-release.
     do_release: !!str 14.0.91
 
 gdb-13-branch:
