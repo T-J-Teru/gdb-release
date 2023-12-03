@@ -182,7 +182,7 @@ class AbstractAI(object):
             # on GMail, where emails sent and received back
             # are not shown unless explicitly listed in
             # the recipients' list.
-            cc=f"{self.cfg['rel_manager.name']} <{self.cfg['rel_manager.email']}",
+            cc=f"{self.cfg['rel_manager.name']} <{self.cfg['rel_manager.email']}>",
             confirm="always",
             no_chain_reply_to=True,
             _outfile=sys.stdout,
