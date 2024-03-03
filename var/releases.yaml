@@ -23,6 +23,7 @@ gdb-14-branch:
     # waited for some changes before cutting the first pre-release.
     do_release: !!str 14.0.91
     do_release: !!str 14.1
+    do_release: !!str 14.2
 
 gdb-13-branch:
     # Branchpoint date: Sun Dec 18 00:01:10 2022 +0000
