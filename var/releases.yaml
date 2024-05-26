@@ -9,7 +9,21 @@
 #      do_release: !!str 9.1
 #      do_release: !!str 9.2
 
-current-branch: gdb-14-branch
+current-branch: gdb-15-branch
+
+gdb-15-branch:
+    # Branchpoint date: Sun May 26 00:00:21 2024 +0000
+    branchpoint: 3a624d9f1c5ccd8cefdd5b7ef12b41513f9006cd
+    branch-version: !!str 15
+    # WARNING WARNING WARNING:
+    # ------------------------
+    #
+    # Do not copy/paste blindly the version numbers from previous releases!
+    #
+    # For the first pre-release:
+    #   - IF the first pre-release is created immediately after branch
+    #     creation => Create a .0.90 pre-release.
+    #   - Otherwise, create a .0.91 pre-release.
 
 gdb-14-branch:
     # Branchpoint date: Sun Oct 08 09:48:00 2023 +0200
