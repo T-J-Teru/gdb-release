@@ -10,3 +10,21 @@
   - new branch email announcement
   - NEWS update on head branch
   - ALL DONE!
+- gdb-15.0.91-release:
+  - freeze branch
+  - update gdb/NEWS
+  - set release version number
+  - create release tag
+  - create tarballs
+  - sanity check
+  - push release tag
+  - update schedule web page
+  - set new version number
+  - unfreeze branch
+  - upload tarballs to sourceware
+  - upload tarballs to gnu.org
+  - announce release on web
+  - update the online documentation
+  - update the ARI
+  - email release announcement
+  - ALL DONE!
