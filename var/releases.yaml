@@ -15,6 +15,16 @@ gdb-16-branch:
     # Branchpoint date: Sun Dec 29 00:00:18 2024 +0000
     branchpoint: ee29a3c4ac7adc928ae6ed1fed3b59c940a519a4
     branch-version: !!str 16
+    # WARNING WARNING WARNING:
+    # ------------------------
+    #
+    # Do not copy/paste blindly the version numbers from previous releases!
+    #
+    # For the first pre-release:
+    #   - IF the first pre-release is created immediately after branch
+    #     creation => Create a .0.90 pre-release.
+    #   - Otherwise, create a .0.91 pre-release.
+    do_release: !!str 16.0.90
 
 gdb-15-branch:
     # Branchpoint date: Sun May 26 00:00:21 2024 +0000
