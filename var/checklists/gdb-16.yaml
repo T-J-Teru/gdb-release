@@ -1,0 +1,12 @@
+- branch-creation:
+  - gdb/README proofing
+  - branchpoint tag creation
+  - branch creation
+  - version.in update (branch+HEAD)
+  - set development to false
+  - update nightly snapshots setup
+  - new branch web announcement
+  - double-check schedule on web
+  - new branch email announcement
+  - NEWS update on head branch
+  - ALL DONE!
