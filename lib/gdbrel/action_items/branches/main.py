@@ -24,6 +24,9 @@ from gdbrel.action_items.branches.update_news_on_head_branch import (
     AI as update_news_on_head_branch,
 )
 from gdbrel.action_items.publish_all_commits import AI as publish_all_commits
+from gdbrel.action_items.branches.add_bugzilla_target_milestone import (
+    AI as add_bugzilla_target_milestone,
+)
 from gdbrel.utils import info
 
 
@@ -83,6 +86,7 @@ class AI(AbstractBranchCreationAI):
             announce_branch_by_email,
             update_news_on_head_branch,
             publish_all_commits,
+            add_bugzilla_target_milestone,
         ):
             AI(self.cfg, self.cklist, self.sandbox)
 

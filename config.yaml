@@ -37,6 +37,8 @@ bugzilla:
     url: https://sourceware.org/bugzilla
     rest_suburl: rest
     show_bug_suburl: show_bug.cgi
+    edit_version_url: ${bugzilla.url}/editversions.cgi?product=gdb
+    edit_milestones_url: ${bugzilla.url}/editmilestones.cgi?product=gdb
 
 setup:
    var_dir: ${root_dir}/var

@@ -25,6 +25,9 @@ from gdbrel.action_items.releases.bump_version_on_branch import (
 from gdbrel.action_items.releases.error_if_unpublished_commits import (
     AI as error_if_unpublished_commits,
 )
+from gdbrel.action_items.releases.update_bugzilla_version_db import (
+    AI as update_bugzilla_version_db,
+)
 from gdbrel.utils import info
 
 
@@ -119,6 +122,7 @@ class AI(AbstractReleaseCreationAI):
             update_online_docs,
             update_ari,
             email_release_announcement,
+            update_bugzilla_version_db,
             # As stated above, everything we did since we last
             # called publish_all_commits should not involve any
             # commit in the GDB repository.  But just to be sure
