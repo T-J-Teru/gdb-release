@@ -10,7 +10,7 @@ Add new versions in Bugzilla
 
         {hl_info}{edit_release_version_url}{no_hl}
 
-     You you see a list of GDB release versions. Use the link
+     You should see a list of GDB release versions. Use the link
      at the bottom of that page to add the newly created release
      version:
 
@@ -26,7 +26,7 @@ Add new versions in Bugzilla
 
         {hl_info}{edit_milestones_url}{no_hl}
 
-     You you see a list of target milestone versions.
+     You should see a list of target milestone versions.
 
      Scroll to the very bottom of the page, and click on the "Add a version"
      link to add the following Target Milestone version:

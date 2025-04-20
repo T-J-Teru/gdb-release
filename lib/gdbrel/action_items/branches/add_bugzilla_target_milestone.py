@@ -10,7 +10,7 @@ Please visit the following Bugzilla administration page:
 
     {hl_info}{edit_milestones_url}{no_hl}
 
-You you see a list of target milestone versions.
+You should see a list of target milestone versions.
 
 Scroll to the very bottom of the page, and click on the "Add a version"
 link to add the following Target Milestone version:
