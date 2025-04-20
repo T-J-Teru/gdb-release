@@ -29,6 +29,7 @@ gdb-16-branch:
     # Emergency corrective release (a couple of really problematic
     # issues reported right after the .1 release was announced).
     do_release: !!str 16.2
+    do_release: !!str 16.3
 
 gdb-15-branch:
     # Branchpoint date: Sun May 26 00:00:21 2024 +0000
