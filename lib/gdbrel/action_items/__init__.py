@@ -2,8 +2,6 @@ from gdbrel.errors import FatalError
 from gdbrel.utils import info, info_skipped, query, trace, indent, get_changelog_entries
 
 from datetime import datetime
-import os
-import re
 import sys
 
 PATCH_REVIEW_BLURB = """\
@@ -191,63 +189,6 @@ class AbstractAI(object):
     ##############################################
     # Other miscellaneous convenience methods... #
     ##############################################
-
-    def update_gdb_version_in_default_exp(self, var_name, new_version):
-        GDB_TESTSUITE_DIR = os.path.join("gdb", "testsuite")
-        DEFAULT_EXP_REL_FILENAME = os.path.join("gdb.base", "default.exp")
-        DEFAULT_EXP_FILENAME = os.path.join(GDB_TESTSUITE_DIR, DEFAULT_EXP_REL_FILENAME)
-
-        # A regular expression, which matches the part of the default.exp
-        # testcase where the expected value for the variable whose value
-        # we are trying to change is provided.
-        VER_RE = (
-            # Start of line...
-            r"^"
-            # Everything up to the name of var we are changing (incl.)...
-            r"(?P<lhs>.*\${var_name})"
-            # The assignment operator...
-            r"(?P<eq>\s*=\s*)"
-            # The version number...
-            r"(?P<rhs>\d+)"
-            # Everything else afterwards, up to...
-            r"(?P<after_rhs>\D*)"
-            # ... the end of line...
-            "$"
-        ).format(var_name=var_name)
-
-        # A replacement string for the region matched by VER_RE.
-        VER_REPL = r"\g<lhs>\g<eq>{new_version}\g<after_rhs>".format(
-            new_version=new_version
-        )
-
-        with self.sandbox.open(DEFAULT_EXP_FILENAME) as f:
-            default_exp = f.read()
-
-        new_default_exp = re.sub(VER_RE, VER_REPL, default_exp, flags=re.MULTILINE)
-
-        # Make sure that the substitution resulted in an actual change;
-        # otherwise, something unexpected must have happened.
-
-        if new_default_exp == default_exp:
-            err_msg = (
-                "%s update failed: Substitution did not result in any change:",
-                f"  - var_name: {var_name}",
-                f"  - new_version: {new_version}",
-                f"  - VER_RE: {VER_RE}",
-                f"  - VER_REPL: {VER_REPL}",
-                "Aborting.",
-            )
-            raise FatalError("\n".join(err_msg))
-
-        with self.sandbox.open(DEFAULT_EXP_FILENAME, "w") as f:
-            f.write(new_default_exp)
-
-        # Return the file we just updated (relative to the root of
-        # the repository, and the corresponding CL entry.
-        return (
-            DEFAULT_EXP_FILENAME,
-            f"\t* {DEFAULT_EXP_REL_FILENAME}: Change ${var_name} to {new_version}.\n",
-        )
 
 
 class AbstractAction(AbstractAI):
