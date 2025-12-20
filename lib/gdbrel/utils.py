@@ -11,7 +11,7 @@ HL_MAP = {
     "hl_warn": "\033[33m",  # Warning (yellow)
     "hl_err": "\033[31m",  # Error (red)
     "hl_sbu": "\033[1;4m",  # Start bold+underline
-    "hl_ebu": "\033[21;24m",  # End bold+underline
+    "hl_ebu": "\033[22;24m",  # End bold+underline
     "no_hl": "\033[0m",  # End of highlighting.
 }
 
