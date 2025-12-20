@@ -43,6 +43,8 @@ Please post the creation of the release on the website:
     % git commit download/ANNOUNCEMENT download/index.html news/index.html\
  index.html
 
+10. Push the changes to the upstream repository
+
     Note: No need worry about www.gnu.org/software/gdb, which is managed
     via savannah, anymore.  There is a redirect from this website to
     the one hosted on sourceware.org.
