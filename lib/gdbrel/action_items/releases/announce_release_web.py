@@ -8,8 +8,8 @@ QUERY_BLURB = """\
 Please post the creation of the release on the website:
 
  1. Checkout the ${hl_sbu}htdocs${hl_ebu} repository from\
- ${hl_sbu}CVS${hl_ebu}:
-    sourceware.org:/cvs/gdb
+ ${hl_sbu}Git${hl_ebu}:
+    sourceware.org/git/gdb-htdocs.git
 
  2. cd htdocs
 
@@ -30,16 +30,17 @@ Please post the creation of the release on the website:
      6.1.  Update latest release version number
            (the links themselves are fine).
      6.2.  Copy new NEWS entry from news/index.html.
+           ${hl_warn}(remember to fix the ${hl_sbu}"../download"${hl_ebu} link to just ${hl_sbu}"download"${hl_ebu})${no_hl}
 
  7. Update last-modified dates:
     % ./index.sh download/index.html news/index.html index.html
 
  8. Verify the modifications you just made:
-    % cvs diff -up download/ANNOUNCEMENT download/index.html\
- news/index.html index.html | tee announce.diff
+    % git diff download/ANNOUNCEMENT download/index.html\
+ news/index.html index.html
 
  9. Commit the changes:
-    % cvs ci download/ANNOUNCEMENT download/index.html news/index.html\
+    % git commit download/ANNOUNCEMENT download/index.html news/index.html\
  index.html
 
     Note: No need worry about www.gnu.org/software/gdb, which is managed
