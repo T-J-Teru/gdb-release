@@ -14,7 +14,6 @@ from gdbrel.action_items.releases.upload_to_sourceware import AI as upload_to_so
 from gdbrel.action_items.releases.upload_to_gnu import AI as upload_to_gnu
 from gdbrel.action_items.releases.announce_release_web import AI as announce_release_web
 from gdbrel.action_items.releases.update_online_docs import AI as update_online_docs
-from gdbrel.action_items.releases.update_ari import AI as update_ari
 from gdbrel.action_items.releases.email_release_announcement import (
     AI as email_release_announcement,
 )
@@ -120,7 +119,6 @@ class AI(AbstractReleaseCreationAI):
             upload_to_gnu,
             announce_release_web,
             update_online_docs,
-            update_ari,
             email_release_announcement,
             update_bugzilla_version_db,
             # As stated above, everything we did since we last
