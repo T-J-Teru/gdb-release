@@ -26,6 +26,7 @@ gdb-17-branch:
     #   - Otherwise, create a .0.91 pre-release.
     do_release: !!str 17.0.90
     do_release: !!str 17.1
+    do_release: !!str 17.2
 
 gdb-16-branch:
     # Branchpoint date: Sun Dec 29 00:00:18 2024 +0000
