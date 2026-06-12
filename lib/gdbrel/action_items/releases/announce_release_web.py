@@ -44,10 +44,13 @@ Please post the creation of the release on the website:
  index.html
 
 10. Push the changes to the upstream repository
+    (this will deploy the changes on the live GDB website hosted on
+    sourceware.org)
 
-    Note: No need worry about www.gnu.org/software/gdb, which is managed
-    via savannah, anymore.  There is a redirect from this website to
-    the one hosted on sourceware.org.
+Note: The GDB website hosted at www.gnu.org/software/gdb is managed via
+      savannah. That website is a simple redirect to the website on
+      sourceware.org, so there is no need to do anything to update
+      the gnu.org side.
 """
 
 
