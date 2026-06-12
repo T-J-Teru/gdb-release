@@ -9,21 +9,38 @@ QUERY_BLURB = """\
 Please do a quick sanity-checking of the tarballs:
 
 This basically consists in verifying that we can build the debugger
-and that "break main; run" works. These scripts have already built
-and installed the debugger, so all that is left to do is:
+and that "break main; run" works, and that you can next/step,
+print some variables, etc.
+
+These scripts have already built and installed the debugger, so all
+that is left to do is:
 
      %% ${hl_sbu}cd %(setup.tmp_dir)s/gdb-%(release.do_release)s${hl_ebu}
      %% ${hl_sbu}./gdb/gdb ./gdb/gdb${hl_ebu}
      [...]
-     (gdb) ${hl_sbu}b main${hl_ebu}
-     Breakpoint 1 at 0x80732bc: file main.c, line 734.
+     (gdb) ${hl_sbu}break captured_main${hl_ebu}
+     Breakpoint 3 at 0x616327: file /[...]/gdb/main.c, line 1349.
      (gdb) ${hl_sbu}run${hl_ebu}
-     Starting program: /[...]/gdb
-
-     Breakpoint 1, main (argc=1, argv=0xbffff8b4) at main.c:734
-     734       catch_errors (captured_main, &args, "", RETURN_MASK_ALL);
-     (gdb) ${hl_sbu}print args${hl_ebu}
-     $1 = {argc = 136426532, argv = 0x821b7f0}
+     Starting program: /[...]/gdb/gdb
+     [...]
+     Breakpoint 3, captured_main (context=0x7fffffffe110)
+         at /[...]/gdb/main.c:1349
+     1349	  captured_main_1 (context);
+     (gdb) ${hl_sbu}print *context${hl_ebu}
+     $1 = {argc = 1, argv = 0x7fffffffe258, interpreter_p = 0x55555611c07a "console"}
+     (gdb) ${hl_sbu}step${hl_ebu}
+     captured_main_1 (context=0x7fffffffe110) at /[...]/gdb/main.c:617
+     617	{
+     (gdb) ${hl_sbu}n${hl_ebu}
+     618	  int argc = context->argc;
+     (gdb) ${hl_sbu}n${hl_ebu}
+     619	  char **argv = context->argv;
+     (gdb) ${hl_sbu}n${hl_ebu}
+     626	  char *symarg = NULL;
+     (gdb) ${hl_sbu}p argc${hl_ebu}
+     $2 = 1
+     (gdb) ${hl_sbu}p *argv${hl_ebu}
+     $3 = 0x7fffffffe660 "/home/brobecke/act/gdb-release/tmp/gdb-17.2/gdb/gdb"
      (gdb)
 
 """
