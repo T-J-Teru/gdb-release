@@ -7,8 +7,6 @@ Please visit the following URL and confirm the schedule:
         ${hl_sbu}https://www.sourceware.org/gdb/schedule/${hl_ebu}
 
 %(official_release_blurb)s
-
-If you do make a change, remember to send the patch to gdb-patches.
 """
 
 OFFICIAL_RELEASE_BLURB = """\
