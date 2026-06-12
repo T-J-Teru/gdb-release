@@ -23,7 +23,7 @@ Please post the creation of the branch on the website:
 
   7. Commit the changes:
 
-         % git ci news/index.html index.html
+         % git commit news/index.html index.html
 
   8. Push the change
      (this will automatically deploy the change to the GDB website
