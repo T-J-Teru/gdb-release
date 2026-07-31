@@ -6,6 +6,9 @@ We use "head" to mean the tip of the branch used for daily development
 
 We use "branch" to mean the release branch being worked on.
 
+Below "AI" means "Action Item", these are the various steps needed to
+complete each task.
+
 checklist:
 ==========
 
