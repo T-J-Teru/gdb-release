@@ -2,7 +2,7 @@ from gdbrel.utils import query, indent
 
 from email.mime.text import MIMEText
 from email.utils import getaddresses
-from smtplib import SMTP
+import subprocess
 
 SEND_QUERY = """\
 Please confirm the following email to be sent:
@@ -37,7 +37,7 @@ class Email(object):
         e_msg = self.__to_mime()
         return e_msg.as_string()
 
-    def send_after_confirmation(self, smtp_server="localhost"):
+    def send_after_confirmation(self):
         send_query = SEND_QUERY % {"email_as_string": indent(self.as_string(), "| ")}
         query(send_query)
 
@@ -50,6 +50,9 @@ class Email(object):
                 + e_msg.get_all("Bcc", [])
             )
         ]
-        s = SMTP(smtp_server)
-        s.sendmail(self.email_from, email_recipients, e_msg.as_string())
-        s.quit()
+        subprocess.run(
+            ["sendmail", "--"] + email_recipients,
+            input=e_msg.as_string(),
+            text=True,
+            check=True,
+        )
