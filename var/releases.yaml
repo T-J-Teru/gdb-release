@@ -24,7 +24,7 @@ gdb-18-branch:
     #   - IF the first pre-release is created immediately after branch
     #     creation => Create a .0.90 pre-release.
     #   - Otherwise, create a .0.91 pre-release.
-    # do_release: !!str 18.0.90
+    do_release: !!str 18.0.90
 
 gdb-17-branch:
     # Branchpoint date: Sat Sep 6 06:19:25 2025 -0700
